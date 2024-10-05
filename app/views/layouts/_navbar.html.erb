@@ -1,0 +1,27 @@
+<div class="navbar">
+  <span>
+    <span class="toggle-sidebar" onclick="toggleSidebar()"><span class="material-icons">menu</span></span>
+  </span>
+  <div class="resources-container">
+    <div class="resource">
+      <%= image_tag "metal.png", alt: "metal" %>
+      <p>Metal: <%= current_user.metal_resource.to_i %></p>
+    </div>
+    <div class="resource">
+      <%= image_tag "crystal.png", alt: "crystal" %>
+      <p>Crystal: <%= current_user.crystal_resource.to_i %></p>
+    </div>
+    <div class="resource">
+      <%= image_tag "deuter.png", alt: "deuter" %>
+      <p>Deuter: <%= current_user.deuterium_resource.to_i %></p>
+    </div>
+    <div class="resource">
+      <%= image_tag "energy.png", alt: "energy" %>
+      <p>Energy: 0</p>
+    </div>
+  </div>
+
+  <%= button_to logout_path, method: :delete, class: "logout-button" do %>
+    <span class="material-icons">logout</span>
+  <% end %>
+</div>

@@ -3,6 +3,7 @@
   <head>
     <title>QgameRor</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -11,6 +12,39 @@
   </head>
 
   <body>
-    <%= yield %>
+    <%= render "layouts/navbar" %>
+
+    <div class="layout">
+      <%= render "layouts/sidebar" %>
+
+      <div class="content">
+        <%= yield %>
+      </div>
+    </div>
+
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById("sidebar");
+            sidebar.classList.toggle("sidebar-open");
+            sidebar.classList.toggle("sidebar-hidden");
+
+            if (sidebar.classList.contains("sidebar-open")) {
+                document.addEventListener("click", closeSidebarOnOutsideClick);
+            } else {
+                document.removeEventListener("click", closeSidebarOnOutsideClick);
+            }
+        }
+
+        function closeSidebarOnOutsideClick(event) {
+            const sidebar = document.getElementById("sidebar");
+
+            if (!sidebar.contains(event.target) && !event.target.closest('.toggle-sidebar')) {
+                sidebar.classList.add("sidebar-hidden");
+                sidebar.classList.remove("sidebar-open");
+
+                document.removeEventListener("click", closeSidebarOnOutsideClick);
+            }
+        }
+    </script>
   </body>
 </html>
