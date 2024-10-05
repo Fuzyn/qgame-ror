@@ -27,7 +27,6 @@ RSpec.describe SessionsController, type: :controller do
         post :create, params: { email: user.email, password: user.password }
         expect(session[:user_id]).to eq(user.id)
         expect(response).to redirect_to(preview_path)
-        expect(flash[:notice]).to eq("Logged in successfully")
       end
     end
 

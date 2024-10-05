@@ -10,4 +10,10 @@ Rails.application.routes.draw do
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'
+
+  get 'fleet', to: 'fleet#index'
+  post 'fleet/build', to: 'fleet#build', as: 'fleet_build'
+
+  get 'defence', to: 'defence#index'
+  post 'defence/build', to: 'defence#build', as: 'defence_build'
 end

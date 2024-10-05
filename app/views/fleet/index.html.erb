@@ -1,0 +1,13 @@
+<% if flash[:notice] %>
+  <div class="success-messages">
+    <p><%= flash[:notice] %></p>
+  </div>
+<% elsif flash[:alert] %>
+  <div class="error-messages">
+    <p><%= flash[:alert] %></p>
+  </div>
+<% end %>
+
+<% @user_fleet.each do |element| %>
+  <%= render partial: "common/equipment", locals: { element: element, build_path: fleet_build_path } %>
+<% end %>
