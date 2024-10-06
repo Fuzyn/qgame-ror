@@ -10,10 +10,20 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
+      create_log("User created: #{user_params[:email]}")
       redirect_to login_path, notice: "Account created successfully"
     else
+      create_log("Error while creating the user: #{user_params[:email]}; Errors: #{@user&.errors&.errors&.map(&:message)&.join(', ')}")
       render :new, status: :unprocessable_entity
     end
+  end
+
+  def resources
+    render json: {
+      metal_resource: current_user.metal_resource,
+      crystal_resource: current_user.crystal_resource,
+      deuterium_resource: current_user.deuterium_resource
+    }
   end
 
   private
