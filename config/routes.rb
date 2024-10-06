@@ -1,6 +1,13 @@
 Rails.application.routes.draw do
+  get 'defence/index'
+  get 'fleet/show'
   root :to => 'sessions#new'
-  resources :users, only: [:new, :create]
+  resources :users, only: [:new, :create] do
+    collection do
+      get :resources
+    end
+  end
+  resources :fleet, only: [:index]
 
   get 'preview', to: 'preview#show', as: 'preview'
 

@@ -5,15 +5,15 @@
   <div class="resources-container">
     <div class="resource">
       <%= image_tag "metal.png", alt: "metal" %>
-      <p>Metal: <%= current_user.metal_resource.to_i %></p>
+      <p id="metal_resource">Metal: <%= current_user.metal_resource.to_i %></p>
     </div>
     <div class="resource">
       <%= image_tag "crystal.png", alt: "crystal" %>
-      <p>Crystal: <%= current_user.crystal_resource.to_i %></p>
+      <p id="crystal_resource">Crystal: <%= current_user.crystal_resource.to_i %></p>
     </div>
     <div class="resource">
       <%= image_tag "deuter.png", alt: "deuter" %>
-      <p>Deuter: <%= current_user.deuterium_resource.to_i %></p>
+      <p id="deuterium_resource">Deuter: <%= current_user.deuterium_resource.to_i %></p>
     </div>
     <div class="resource">
       <%= image_tag "energy.png", alt: "energy" %>
@@ -25,3 +25,18 @@
     <span class="material-icons">logout</span>
   <% end %>
 </div>
+
+<script>
+    function updateResources() {
+        fetch("/users/resources")
+            .then((response) => response.json())
+            .then((data) => {
+                document.getElementById("metal_resource").textContent = "Metal: " + +data.metal_resource;
+                document.getElementById("crystal_resource").textContent = "Crystal: " + +data.crystal_resource;
+                document.getElementById("deuterium_resource").textContent = "Deuter: " + +data.deuterium_resource;
+            })
+            .catch((error) => console.error("Error fetching resources:", error));
+    }
+
+    setInterval(updateResources, 5000);
+</script>

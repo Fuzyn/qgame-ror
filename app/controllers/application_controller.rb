@@ -10,6 +10,10 @@ class ApplicationController < ActionController::Base
     redirect_to preview_path if current_user
   end
 
+  def create_log(message)
+    SendLogWorkerJob.perform_later(message, current_user)
+  end
+
   private
 
   def require_login

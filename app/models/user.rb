@@ -9,6 +9,12 @@ class User < ApplicationRecord
 
   after_create :create_defaults
 
+  def increment_resources
+    increment!(:metal_resource, 10)
+    increment!(:crystal_resource, 10)
+    increment!(:deuterium_resource, 10)
+  end
+
   private
 
   def create_defaults
