@@ -10,9 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_10_05_164652) do
+ActiveRecord::Schema[7.0].define(version: 2024_10_06_182149) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "user_buildings", force: :cascade do |t|
+    t.bigint "user_id"
+    t.integer "metal_mine", default: 0
+    t.integer "crystal_mine", default: 0
+    t.integer "deuterium_refinery", default: 0
+    t.integer "power_station", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_user_buildings_on_user_id"
+  end
 
   create_table "user_defences", force: :cascade do |t|
     t.bigint "user_id"
@@ -48,6 +59,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_10_05_164652) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "user_buildings", "users"
   add_foreign_key "user_defences", "users"
   add_foreign_key "user_fleets", "users"
 end

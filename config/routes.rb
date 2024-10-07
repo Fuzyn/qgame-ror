@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'buildings/index'
   get 'defence/index'
   get 'fleet/show'
   root :to => 'sessions#new'
@@ -23,4 +24,7 @@ Rails.application.routes.draw do
 
   get 'defence', to: 'defence#index'
   post 'defence/build', to: 'defence#build', as: 'defence_build'
+
+  get 'building', to: 'buildings#index'
+  post 'building/build', to: 'buildings#build', as: 'building_build'
 end

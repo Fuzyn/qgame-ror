@@ -6,13 +6,14 @@ class User < ApplicationRecord
 
   has_one :user_fleet, dependent: :destroy
   has_one :user_defence, dependent: :destroy
+  has_one :user_building, dependent: :destroy
 
   after_create :create_defaults
 
   def increment_resources
-    increment!(:metal_resource, 10)
-    increment!(:crystal_resource, 10)
-    increment!(:deuterium_resource, 10)
+    increment!(:metal_resource, MetalMine.extraction(self))
+    increment!(:crystal_resource, CrystalMine.extraction(self))
+    increment!(:deuterium_resource, DeuteriumRefinery.extraction(self))
   end
 
   private
@@ -20,5 +21,6 @@ class User < ApplicationRecord
   def create_defaults
     create_user_fleet!
     create_user_defence!
+    create_user_building!
   end
 end

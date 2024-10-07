@@ -1,0 +1,16 @@
+<div class="equipment-item">
+  <% if building[:img].present? && File.exist?(Rails.root.join('app', 'assets', 'images', building[:img])) %>
+    <%= image_tag(building[:img], alt: building[:name]) %>
+  <% end %>
+  <div>
+    <h3><%= building[:name] %> (<%= building[:level] %>)</h3>
+    <p><%= building[:description] %></p>
+
+    <%= button_to building_build_path, method: :post, local: true, params: {level: 1, name: building[:name], key: building[:key]} do %>
+      <span class="material-icons">add</span>
+    <% end %>
+    <%= button_to building_build_path, method: :post, local: true, params: {level: -1, name: building[:name], key: building[:key]}, disabled: building[:level] <= 0 do %>
+      <span class="material-icons">remove</span>
+    <% end %>
+  </div>
+</div>
