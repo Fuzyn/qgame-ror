@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 class DeuteriumRefinery < Buildings
-  @basic_extraction = 7
+  @points = 600
+  @basic_production = 7
   @degree_growth = 1.2
   @energy_consumption = -5
   @key = "deuterium_refinery".freeze
@@ -10,7 +11,8 @@ class DeuteriumRefinery < Buildings
   @img = "buildings/deuterium_refinery.png".freeze
 
   class << self
-    attr_accessor :basic_extraction
+    attr_accessor :points
+    attr_accessor :basic_production
     attr_accessor :degree_growth
     attr_accessor :energy_consumption
     attr_accessor :key

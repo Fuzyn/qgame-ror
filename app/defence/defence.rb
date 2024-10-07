@@ -31,7 +31,7 @@ class Defence
   def self.user_values(user)
     self.subclasses.map do |e|
       {
-        points: e.user_points,
+        points: e.basic_points,
         shield: e.user_shield,
         attack: e.user_attack,
         key: e.basic_key,

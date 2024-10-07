@@ -1,13 +1,7 @@
 # frozen_string_literal: true
 
 module FleetDefenceHelper
-  def basic_points
-    self.points
-  end
-
-  def user_points
-    self.points * 2
-  end
+  include ApplicationHelper
 
   def basic_shield
     self.shield
@@ -47,21 +41,5 @@ module FleetDefenceHelper
 
   def user_combustion
     self.combustion * 2
-  end
-
-  def basic_key
-    self.key
-  end
-
-  def basic_name
-    self.name
-  end
-
-  def basic_description
-    self.description
-  end
-
-  def basic_img
-    self.img
   end
 end

@@ -11,9 +11,9 @@ class User < ApplicationRecord
   after_create :create_defaults
 
   def increment_resources
-    increment!(:metal_resource, MetalMine.extraction(self))
-    increment!(:crystal_resource, CrystalMine.extraction(self))
-    increment!(:deuterium_resource, DeuteriumRefinery.extraction(self))
+    increment!(:metal_resource, MetalMine.production(self))
+    increment!(:crystal_resource, CrystalMine.production(self))
+    increment!(:deuterium_resource, DeuteriumRefinery.production(self))
   end
 
   private

@@ -34,7 +34,7 @@ class Fleet
   def self.user_values(user)
     self.subclasses.map do |e|
       {
-        points: e.user_points,
+        points: e.basic_points,
         shield: e.user_shield,
         attack: e.user_attack,
         speed: e.user_speed,

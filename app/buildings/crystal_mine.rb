@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 class CrystalMine < Buildings
-  @basic_extraction = 10
+  @points = 500
+  @basic_production = 10
   @degree_growth = 1.2
   @energy_consumption = -4
   @key = "crystal_mine".freeze
@@ -10,7 +11,8 @@ class CrystalMine < Buildings
   @img = "buildings/crystal_mine.png".freeze
 
   class << self
-    attr_accessor :basic_extraction
+    attr_accessor :points
+    attr_accessor :basic_production
     attr_accessor :degree_growth
     attr_accessor :energy_consumption
     attr_accessor :key

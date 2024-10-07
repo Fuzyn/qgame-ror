@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Buildings
+  extend ApplicationHelper
   def self.subclasses
     eager_load_fleet_classes
     ObjectSpace.each_object(Class).select { |klass| klass < self }
@@ -15,7 +16,8 @@ class Buildings
   def self.user_values(user)
     self.subclasses.map do |e|
       {
-        extraction: e.extraction(user),
+        points: e.basic_points,
+        production: e.production(user),
         energy_consumption: e.energy(user),
         key: e.basic_key,
         name: e.basic_name,
@@ -26,8 +28,8 @@ class Buildings
     end
   end
 
-  def self.extraction(user)
-    (self.basic_extraction + (self.basic_extraction * calculated_degree(user))).to_i
+  def self.production(user)
+    (self.basic_production + (self.basic_production * calculated_degree(user))).to_i
   end
 
   def self.energy(user)
@@ -36,21 +38,5 @@ class Buildings
 
   def self.calculated_degree(user)
     self.degree_growth * user.user_building[self.basic_key]
-  end
-
-  def self.basic_key
-    self.key
-  end
-
-  def self.basic_name
-    self.name
-  end
-
-  def self.basic_description
-    self.description
-  end
-
-  def self.basic_img
-    self.img
   end
 end

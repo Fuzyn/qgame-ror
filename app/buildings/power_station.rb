@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 class PowerStation < Buildings
-  @basic_extraction = 20
+  @points = 500
+  @basic_production = 20
   @degree_growth = 1.3
   @energy_consumption = 0
   @key = "power_station".freeze
@@ -10,7 +11,8 @@ class PowerStation < Buildings
   @img = "buildings/power_station.png".freeze
 
   class << self
-    attr_accessor :basic_extraction
+    attr_accessor :points
+    attr_accessor :basic_production
     attr_accessor :degree_growth
     attr_accessor :energy_consumption
     attr_accessor :key

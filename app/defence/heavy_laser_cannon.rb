@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class HeavyLaserCannon
+class HeavyLaserCannon < Defence
   @points = 4000
   @shield = 600
   @attack = 600
