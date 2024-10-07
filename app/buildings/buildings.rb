@@ -1,20 +1,18 @@
 # frozen_string_literal: true
 
 class Buildings
-  extend ApplicationHelper
-  def self.subclasses
-    eager_load_fleet_classes
-    ObjectSpace.each_object(Class).select { |klass| klass < self }
-  end
+  extend DevelopmentHelper
 
-  def self.eager_load_fleet_classes
-    Dir[Rails.root.join('app/buildings/*.rb')].each do |file|
-      require_dependency file
-    end
+  @relation_name = 'user_building'.freeze
+  @source = 'buildings'.freeze
+
+  class << self
+    attr_accessor :relation_name
+    attr_accessor :source
   end
 
   def self.user_values(user)
-    self.subclasses.map do |e|
+    self.subclasses('buildings').map do |e|
       {
         points: e.basic_points,
         production: e.production(user),
@@ -29,14 +27,10 @@ class Buildings
   end
 
   def self.production(user)
-    (self.basic_production + (self.basic_production * calculated_degree(user))).to_i
+    (self.basic_production + (self.basic_production * self.calculated_degree(user))).to_i
   end
 
   def self.energy(user)
-    (self.energy_consumption - (self.energy_consumption * calculated_degree(user))).to_i
-  end
-
-  def self.calculated_degree(user)
-    self.degree_growth * user.user_building[self.basic_key]
+    (self.energy_consumption * self.calculated_degree(user)).to_i
   end
 end

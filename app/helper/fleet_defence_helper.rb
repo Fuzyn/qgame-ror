@@ -42,4 +42,8 @@ module FleetDefenceHelper
   def user_combustion
     self.combustion * 2
   end
+
+  def user_equipment_sum_points(user)
+    self.subclasses(default_source).map { |e| e.basic_points * user.send(default_relation_name)[e.basic_key] }.sum.to_i
+  end
 end
