@@ -12,6 +12,7 @@ class SessionsController < ApplicationController
     if user&.authenticate(params[:password])
       create_log("User logged in: #{params[:email]}")
       session[:user_id] = user.id
+      session[:planet_id] = user.planets.order(:created_at).first&.id
       redirect_to preview_path
     else
       create_log("Login attempt failed: #{params[:email]}")
@@ -23,6 +24,7 @@ class SessionsController < ApplicationController
   def destroy
     create_log("User logged out: #{current_user.email}")
     session[:user_id] = nil
+    session[:planet_id] = nil
     redirect_to login_path, notice: "Logged out successfully"
   end
 end

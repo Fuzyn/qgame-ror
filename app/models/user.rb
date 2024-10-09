@@ -5,24 +5,50 @@ class User < ApplicationRecord
 
   validates :email, presence: true, uniqueness: { case_sensitive: false }, format: { with: /\A[^@\s]+@([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}\z/, message: "must be a valid email format" }
   validates :password, length: { minimum: 6 }
+  validate :max_planets_limit
 
-  has_one :user_fleet, dependent: :destroy
-  has_one :user_defence, dependent: :destroy
-  has_one :user_building, dependent: :destroy
+  has_many :planet_fleets, dependent: :destroy
+  has_many :planet_defences, dependent: :destroy
+  has_many :planet_buildings, dependent: :destroy
+  has_many :planets, dependent: :destroy
 
   after_create :create_defaults
 
-  def increment_resources
-    increment!(:metal_resource, MetalMine.production(self))
-    increment!(:crystal_resource, CrystalMine.production(self))
-    increment!(:deuterium_resource, DeuteriumRefinery.production(self))
-  end
-
   private
 
+  def max_planets_limit
+    if planets.size > 14
+      errors.add(:base, 'You can make max 14 planet.')
+    end
+  end
+
   def create_defaults
-    create_user_fleet!
-    create_user_defence!
-    create_user_building!
+    photo_number = 1
+    galaxy = 1
+    solar_system = 1
+    planet_position = 1
+
+    loop do
+      photo_number = rand(1..1)
+
+      break unless Planet.find_by(user: self, photo_number: photo_number)
+    end
+
+    loop do
+      galaxy = rand(1..9)
+      solar_system = rand(1..255)
+      planet_position = rand(1..15)
+
+      break unless Planet.find_by(galaxy: galaxy, solar_system: solar_system, planet_position: planet_position)
+    end
+
+    self.planets.create!(
+      {
+        name: Faker::Lorem.word&.capitalize,
+        galaxy: galaxy,
+        solar_system: solar_system,
+        planet_position: planet_position,
+        photo_number: photo_number,
+      })
   end
 end

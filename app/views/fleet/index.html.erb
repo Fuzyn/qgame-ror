@@ -8,6 +8,6 @@
   </div>
 <% end %>
 
-<% @user_fleet.each do |element| %>
+<% @planet_fleet.each do |element| %>
   <%= render partial: "common/equipment", locals: { element: element, build_path: fleet_build_path } %>
 <% end %>

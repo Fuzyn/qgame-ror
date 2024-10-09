@@ -1,9 +1,13 @@
 class ApplicationController < ActionController::Base
-  helper_method :current_user
+  helper_method :current_user, :current_planet
   before_action :require_login
 
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
+  end
+
+  def current_planet
+    @current_planet ||= current_user.planets.find(session[:planet_id]) if session[:planet_id] && current_user
   end
 
   def redirect_if_logged_in

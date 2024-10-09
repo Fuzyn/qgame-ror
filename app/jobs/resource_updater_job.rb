@@ -2,8 +2,8 @@ class ResourceUpdaterJob
   include Sidekiq::Job
 
   def perform
-    User.all.each do |user|
-      user.increment_resources
+    Planet.all.each do |planet|
+      planet.increment_resources
     end
   end
 end

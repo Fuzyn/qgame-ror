@@ -1,10 +1,10 @@
 module ApplicationHelper
   def subclasses(source)
-    eager_load_fleet_classes(source)
+    eager_load_classes(source)
     ObjectSpace.each_object(Class).select { |klass| klass < self }
   end
 
-  def eager_load_fleet_classes(source)
+  def eager_load_classes(source)
     Dir[Rails.root.join("app/#{source}/*.rb")].each do |file|
       require_dependency file
     end

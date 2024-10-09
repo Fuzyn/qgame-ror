@@ -3,7 +3,7 @@
 class Defence
   extend FleetDefenceHelper
 
-  @relation_name = 'user_defence'.freeze
+  @relation_name = 'planet_defence'.freeze
   @source = 'defence'.freeze
 
   class << self
@@ -12,7 +12,7 @@ class Defence
   end
 
   def self.basic_values
-    self.subclasses('defence').map do |e|
+    self.subclasses(@source).map do |e|
       {
         points: e.basic_points,
         shield: e.basic_shield,
@@ -25,8 +25,8 @@ class Defence
     end
   end
 
-  def self.user_values(user)
-    self.subclasses('defence').map do |e|
+  def self.planet_values(planet)
+    self.subclasses(@source).map do |e|
       {
         points: e.basic_points,
         shield: e.user_shield,
@@ -35,7 +35,7 @@ class Defence
         name: e.basic_name,
         description: e.basic_description,
         img: e.basic_img,
-        count: user.user_defence[e.basic_key]
+        count: planet.planet_defence[e.basic_key]
       }
     end
   end

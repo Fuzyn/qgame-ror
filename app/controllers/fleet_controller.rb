@@ -1,7 +1,6 @@
 class FleetController < ApplicationController
   def index
-    @fleet = Fleet.basic_values
-    @user_fleet = Fleet.user_values(current_user)
+    @planet_fleet = Fleet.planet_values(current_planet)
   end
 
   def build
@@ -9,9 +8,9 @@ class FleetController < ApplicationController
     name = params[:name]
     quantity = params[:quantity].to_i
 
-    if current_user.user_fleet
-      current_user.user_fleet.increment!(key, quantity)
-      create_log("Fleet: User #{current_user.email} build #{quantity} #{name}. Current status: #{current_user.user_fleet[key]} - #{name}")
+    if current_planet.planet_fleet
+      current_planet.planet_fleet.increment!(key, quantity)
+      create_log("Fleet: User #{current_user.email} build #{quantity} #{name}. Current status: #{current_planet.planet_fleet[key]} - #{name}")
       redirect_to fleet_index_path, notice: "Build: #{quantity} #{name}"
     else
       create_log("Fleet: Failed build #{quantity} #{name} for user #{current_user.email}")
