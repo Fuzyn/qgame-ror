@@ -1,7 +1,7 @@
 module ApplicationHelper
   def subclasses(source)
     eager_load_classes(source)
-    ObjectSpace.each_object(Class).select { |klass| klass < self }
+    ObjectSpace.each_object(Class).select { |klass| klass < self }.sort_by { |klass| klass.order }
   end
 
   def eager_load_classes(source)
@@ -36,5 +36,9 @@ module ApplicationHelper
 
   def default_source
     self.source
+  end
+
+  def order
+    self.order
   end
 end
