@@ -21,16 +21,25 @@ class Buildings
         name: e.basic_name,
         description: e.basic_description,
         img: e.basic_img,
-        level: planet.planet_building[e.basic_key]
+        level: planet.planet_building[e.basic_key],
+        order: e.class_order
       }
     end
   end
 
   def self.production(planet)
-    (self.basic_production + (self.basic_production * self.calculated_degree(planet))).to_i
+    begin
+      (self.basic_production + (self.basic_production * self.calculated_degree(planet))).to_i
+    rescue
+      nil
+    end
   end
 
   def self.energy(planet)
-    (self.energy_consumption * self.calculated_degree(planet)).to_i
+    begin
+      (self.energy_consumption * self.calculated_degree(planet)).to_i
+    rescue
+      nil
+    end
   end
 end

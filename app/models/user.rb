@@ -5,7 +5,6 @@ class User < ApplicationRecord
 
   validates :email, presence: true, uniqueness: { case_sensitive: false }, format: { with: /\A[^@\s]+@([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}\z/, message: "must be a valid email format" }
   validates :password, length: { minimum: 6 }
-  validate :max_planets_limit
 
   has_many :planet_fleets, dependent: :destroy
   has_many :planet_defences, dependent: :destroy
@@ -15,12 +14,6 @@ class User < ApplicationRecord
   after_create :create_defaults
 
   private
-
-  def max_planets_limit
-    if planets.size > 14
-      errors.add(:base, 'You can make max 14 planet.')
-    end
-  end
 
   def create_defaults
     photo_number = 1
@@ -48,7 +41,7 @@ class User < ApplicationRecord
         galaxy: galaxy,
         solar_system: solar_system,
         planet_position: planet_position,
-        photo_number: photo_number,
+        photo_number: photo_number
       })
   end
 end

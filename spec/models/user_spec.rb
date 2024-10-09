@@ -7,6 +7,10 @@ RSpec.describe User, type: :model do
     it { should validate_presence_of(:email) }
     it { should validate_uniqueness_of(:email).case_insensitive }
     it { should allow_value('user@example.com').for(:email) }
+    it { should have_many(:planets) }
+    it { should have_many(:planet_fleets) }
+    it { should have_many(:planet_defences) }
+    it { should have_many(:planet_buildings) }
     it { should_not allow_value('invalid-email').for(:email) }
 
     it { should validate_length_of(:password).is_at_least(6) }
@@ -61,6 +65,26 @@ RSpec.describe User, type: :model do
         subject.password = "valid_password"
         subject.password_confirmation = "different_password"
         expect(subject).not_to be_valid
+      end
+    end
+
+    context "should have all associations" do
+      let(:user) { create(:user) }
+
+      it "should have planets" do
+        expect(user.planets.count).to be > 0
+      end
+
+      it "should have planet_fleets" do
+        expect(user.planet_fleets.count).to be > 0
+      end
+
+      it "should have planet_defences" do
+        expect(user.planet_defences.count).to be > 0
+      end
+
+      it "should have planet_buildings" do
+        expect(user.planet_buildings.count).to be > 0
       end
     end
   end

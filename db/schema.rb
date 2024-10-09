@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_10_07_143045) do
+ActiveRecord::Schema[7.0].define(version: 2024_10_09_151633) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -63,6 +63,9 @@ ActiveRecord::Schema[7.0].define(version: 2024_10_07_143045) do
     t.integer "photo_number", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.decimal "metal_resource", default: "0.0"
+    t.decimal "crystal_resource", default: "0.0"
+    t.decimal "deuterium_resource", default: "0.0"
     t.index ["user_id"], name: "index_planets_on_user_id"
   end
 
@@ -71,9 +74,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_10_07_143045) do
     t.string "password_digest", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.decimal "metal_resource", default: "0.0"
-    t.decimal "crystal_resource", default: "0.0"
-    t.decimal "deuterium_resource", default: "0.0"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 

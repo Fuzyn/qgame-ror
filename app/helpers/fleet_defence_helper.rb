@@ -4,43 +4,63 @@ module FleetDefenceHelper
   include ApplicationHelper
 
   def basic_shield
-    self.shield
+    self.try(:shield)
   end
 
   def user_shield
-    self.shield * 2
+    begin
+      self.shield * 2
+    rescue
+      nil
+    end
   end
 
   def basic_attack
-    self.attack
+    self.try(:attack)
   end
 
   def user_attack
-    self.attack * 2
+    begin
+      self.attack * 2
+    rescue
+      nil
+    end
   end
 
   def basic_speed
-    self.speed
+    self.try(:speed)
   end
 
   def user_speed
-    self.speed * 2
+    begin
+      self.speed * 2
+    rescue
+      nil
+    end
   end
 
   def basic_capacity
-    self.capacity
+    self.try(:capacity)
   end
 
   def user_capacity
-    self.capacity * 2
+    begin
+      self.capacity * 2
+    rescue
+      nil
+    end
   end
 
   def basic_combustion
-    self.combustion
+    self.try(:combustion)
   end
 
   def user_combustion
-    self.combustion * 2
+    begin
+      self.combustion * 2
+    rescue
+      nil
+    end
   end
 
   def planet_equipment_sum_points(planet)

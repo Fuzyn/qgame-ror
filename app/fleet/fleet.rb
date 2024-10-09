@@ -23,7 +23,8 @@ class Fleet
         key: e.basic_key,
         name: e.basic_name,
         description: e.basic_description,
-        img: e.basic_img
+        img: e.basic_img,
+        order: e.class_order
       }
     end
   end
@@ -41,7 +42,8 @@ class Fleet
         name: e.basic_name,
         description: e.basic_description,
         img: e.basic_img,
-        count: planet.planet_fleet[e.basic_key]
+        count: planet.planet_fleet[e.basic_key],
+        order: e.class_order
       }
     end
   end

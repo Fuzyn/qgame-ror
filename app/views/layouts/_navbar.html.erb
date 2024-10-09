@@ -5,15 +5,15 @@
   <div class="resources-container">
     <div class="resource">
       <%= image_tag "metal.png", alt: "metal" %>
-      <p id="metal_resource">Metal: <%= current_user.metal_resource.to_i %></p>
+      <p id="metal_resource">Metal: <%= current_planet.metal_resource.to_i %></p>
     </div>
     <div class="resource">
       <%= image_tag "crystal.png", alt: "crystal" %>
-      <p id="crystal_resource">Crystal: <%= current_user.crystal_resource.to_i %></p>
+      <p id="crystal_resource">Crystal: <%= current_planet.crystal_resource.to_i %></p>
     </div>
     <div class="resource">
       <%= image_tag "deuter.png", alt: "deuter" %>
-      <p id="deuterium_resource">Deuter: <%= current_user.deuterium_resource.to_i %></p>
+      <p id="deuterium_resource">Deuter: <%= current_planet.deuterium_resource.to_i %></p>
     </div>
     <div class="resource">
       <%= image_tag "energy.png", alt: "energy" %>

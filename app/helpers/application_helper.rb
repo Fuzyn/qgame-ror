@@ -11,23 +11,23 @@ module ApplicationHelper
   end
 
   def basic_points
-    self.points
+    self.try(:points)
   end
 
   def basic_key
-    self.key
+    self.try(:key)
   end
 
   def basic_name
-    self.name
+    self.try(:name)
   end
 
   def basic_description
-    self.description
+    self.try(:description)
   end
 
   def basic_img
-    self.img
+    self.try(:img)
   end
 
   def default_relation_name
@@ -35,10 +35,10 @@ module ApplicationHelper
   end
 
   def default_source
-    self.source
+    self.try(:source)
   end
 
-  def order
-    self.order
+  def class_order
+    self.try(:order)
   end
 end

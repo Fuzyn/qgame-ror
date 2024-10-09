@@ -20,9 +20,9 @@ class UsersController < ApplicationController
 
   def resources
     render json: {
-      metal_resource: current_user.metal_resource,
-      crystal_resource: current_user.crystal_resource,
-      deuterium_resource: current_user.deuterium_resource
+      metal_resource: current_planet.metal_resource,
+      crystal_resource: current_planet.crystal_resource,
+      deuterium_resource: current_planet.deuterium_resource
     }
   end
 

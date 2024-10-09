@@ -6,6 +6,7 @@ class Planet < ApplicationRecord
   has_one :planet_defence, dependent: :destroy
   has_one :planet_building, dependent: :destroy
 
+  validate :max_planets_limit, on: :create
   after_create :create_defaults
 
   def increment_resources
@@ -15,6 +16,13 @@ class Planet < ApplicationRecord
   end
 
   private
+
+  def max_planets_limit
+    user = self.user
+    if user.planets.size >= 14
+      errors.add(:base, 'You can make max 14 planet.')
+    end
+  end
 
   def create_defaults
     PlanetBuilding.create!({ user: self.user, planet_id: self.id })
