@@ -1,14 +1,11 @@
 Rails.application.routes.draw do
-  get 'buildings/index'
-  get 'defence/index'
-  get 'fleet/show'
-  root :to => 'sessions#new'
+  # get 'buildings/index'
+  root 'sessions#new'
   resources :users, only: [:new, :create] do
     collection do
       get :resources
     end
   end
-  resources :fleet, only: [:index]
 
   get 'preview', to: 'preview#show', as: 'preview'
 
@@ -19,12 +16,14 @@ Rails.application.routes.draw do
   post 'login', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'
 
-  get 'fleet', to: 'fleet#index'
-  post 'fleet/build', to: 'fleet#build', as: 'fleet_build'
+  get 'shipyard', to: 'shipyard#index'
+  post 'shipyard/build', to: 'shipyard#build', as: 'shipyard_build'
 
   get 'defence', to: 'defence#index'
   post 'defence/build', to: 'defence#build', as: 'defence_build'
 
   get 'building', to: 'buildings#index'
   post 'building/build', to: 'buildings#build', as: 'building_build'
+
+  match '*path', to: redirect('/404.html'), via: :all
 end
