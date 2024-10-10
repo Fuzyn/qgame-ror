@@ -3,14 +3,17 @@
     <%= image_tag(building[:img], alt: building[:name]) %>
   <% end %>
   <div>
-    <h3><%= building[:name] %> (<%= building[:level] %>)</h3>
+    <div class="equipment-header">
+      <h3><%= building[:name] %> (<%= building[:level] %>)</h3>
+      <%= button_to building_build_path, method: :post, local: true, params: {level: 1, name: building[:name], key: building[:key]} do %>
+        <span class="material-icons">add</span>
+      <% end %>
+      <%= button_to building_build_path, method: :post, local: true, params: {level: -1, name: building[:name], key: building[:key]}, disabled: building[:level] <= 0 do %>
+        <span class="material-icons">remove</span>
+      <% end %>
+    </div>
     <p><%= building[:description] %></p>
-
-    <%= button_to building_build_path, method: :post, local: true, params: {level: 1, name: building[:name], key: building[:key]} do %>
-      <span class="material-icons">add</span>
-    <% end %>
-    <%= button_to building_build_path, method: :post, local: true, params: {level: -1, name: building[:name], key: building[:key]}, disabled: building[:level] <= 0 do %>
-      <span class="material-icons">remove</span>
-    <% end %>
+    <%= render 'common/bonus_value', title: "Production", value: building[:production] %>
+    <%= render 'common/bonus_value', title: "Energy", value: building[:energy_consumption] %>
   </div>
 </div>

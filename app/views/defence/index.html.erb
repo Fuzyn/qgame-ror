@@ -9,5 +9,5 @@
 <% end %>
 
 <% @planet_defence.each do |element| %>
-  <%= render partial: "common/equipment", locals: { element: element, build_path: defence_build_path } %>
+  <%= render partial: "defence/cannon", locals: { element: element } %>
 <% end %>

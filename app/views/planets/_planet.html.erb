@@ -13,6 +13,6 @@
   </div>
   <div class="resource">
     <%= image_tag "energy.png", alt: "energy" %>
-    <p>Energy: <%= planet.planet_energy_balance %></p>
+    <p>Energy: <%= planet&.planet_energy_balance %></p>
   </div>
 </div>

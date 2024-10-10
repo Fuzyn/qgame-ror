@@ -9,12 +9,13 @@ class Planet < ApplicationRecord
   validate :max_planets_limit, on: :create
   after_create :create_defaults
 
-  def increment_resources
-    increment!(:metal_resource, MetalMine.production(self))
-    increment!(:crystal_resource, CrystalMine.production(self))
-    increment!(:deuterium_resource, DeuteriumRefinery.production(self))
+  after_update_commit -> { broadcast_replace_later_to "planet_#{self.id}", locals: { planet: self } }
 
-    broadcast_replace_later_to "planet_#{self.id}", locals: { planet: self }
+  def increment_resources
+    self.metal_resource += MetalMine.production(self)
+    self.crystal_resource += CrystalMine.production(self)
+    self.deuterium_resource += DeuteriumRefinery.production(self)
+    self.save!
   end
 
   private

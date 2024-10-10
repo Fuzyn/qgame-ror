@@ -1,0 +1,27 @@
+<div class="equipment-item">
+  <% if element[:img].present? && File.exist?(Rails.root.join('app', 'assets', 'images', element[:img])) %>
+    <%= image_tag(element[:img], alt: element[:name]) %>
+  <% end %>
+  <div>
+    <div class="equipment-header">
+      <div class="tooltip-container">
+        <h3 class="tooltip-trigger"><%= element[:name] %> (<%=element[:count] %>)</h3>
+        <span class="tooltip-text">
+          <%= render 'common/advanced_bonus_value', title: "Shield", basic_value: element[:basic_shield], user_value: element[:shield] %>
+          <%= render 'common/advanced_bonus_value', title: "Attack", basic_value: element[:basic_attack], user_value: element[:attack] %>
+          <%= render 'common/advanced_bonus_value', title: "Speed", basic_value: element[:basic_speed], user_value: element[:speed] %>
+          <%= render 'common/advanced_bonus_value', title: "Capacity", basic_value: element[:basic_capacity], user_value: element[:capacity] %>
+          <%= render 'common/advanced_bonus_value', title: "Combustion", basic_value: element[:basic_combustion], user_value: element[:combustion] %>
+          <%= render 'common/advanced_bonus_value', title: "Shield", basic_value: element[:basic_shield], user_value: element[:shield] %>
+        </span>
+      </div>
+    </div>
+    <p><%= element[:description] %></p>
+    <%= form_with url: shipyard_build_path, method: :post, local: true do |form| %>
+      <%= hidden_field_tag :key, element[:key] %>
+      <%= hidden_field_tag :name, element[:name] %>
+      <%= number_field_tag :quantity, nil, min: 1, step: 1 %>
+      <%= form.submit 'Build' %>
+    <% end %>
+  </div>
+</div>
