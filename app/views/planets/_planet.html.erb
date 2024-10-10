@@ -1,0 +1,18 @@
+<div class="resources-container" id="planet_<%= planet.id %>">
+  <div class="resource">
+    <%= image_tag "metal.png", alt: "metal" %>
+    <p id="metal_resource">Metal: <%= planet.metal_resource.to_i %></p>
+  </div>
+  <div class="resource">
+    <%= image_tag "crystal.png", alt: "crystal" %>
+    <p id="crystal_resource">Crystal: <%= planet.crystal_resource.to_i %></p>
+  </div>
+  <div class="resource">
+    <%= image_tag "deuter.png", alt: "deuter" %>
+    <p id="deuterium_resource">Deuter: <%= planet.deuterium_resource.to_i %></p>
+  </div>
+  <div class="resource">
+    <%= image_tag "energy.png", alt: "energy" %>
+    <p>Energy: <%= planet.planet_energy_balance %></p>
+  </div>
+</div>

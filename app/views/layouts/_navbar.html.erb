@@ -2,41 +2,10 @@
   <span>
     <span class="toggle-sidebar" onclick="toggleSidebar()"><span class="material-icons">menu</span></span>
   </span>
-  <div class="resources-container">
-    <div class="resource">
-      <%= image_tag "metal.png", alt: "metal" %>
-      <p id="metal_resource">Metal: <%= current_planet.metal_resource.to_i %></p>
-    </div>
-    <div class="resource">
-      <%= image_tag "crystal.png", alt: "crystal" %>
-      <p id="crystal_resource">Crystal: <%= current_planet.crystal_resource.to_i %></p>
-    </div>
-    <div class="resource">
-      <%= image_tag "deuter.png", alt: "deuter" %>
-      <p id="deuterium_resource">Deuter: <%= current_planet.deuterium_resource.to_i %></p>
-    </div>
-    <div class="resource">
-      <%= image_tag "energy.png", alt: "energy" %>
-      <p>Energy: <%= current_planet.planet_energy_balance %></p>
-    </div>
-  </div>
+
+  <%= render "planets/planet", planet: current_planet %>
 
   <%= button_to logout_path, method: :delete, class: "logout-button" do %>
     <span class="material-icons">logout</span>
   <% end %>
 </div>
-
-<script>
-    function updateResources() {
-        fetch("/users/resources")
-            .then((response) => response.json())
-            .then((data) => {
-                document.getElementById("metal_resource").textContent = "Metal: " + +data.metal_resource;
-                document.getElementById("crystal_resource").textContent = "Crystal: " + +data.crystal_resource;
-                document.getElementById("deuterium_resource").textContent = "Deuter: " + +data.deuterium_resource;
-            })
-            .catch((error) => console.error("Error fetching resources:", error));
-    }
-
-    setInterval(updateResources, 5000);
-</script>

@@ -12,6 +12,7 @@
   </head>
 
   <body>
+    <%= turbo_stream_from "planet_#{current_planet.id}" %>
     <%= render "layouts/navbar" %>
 
     <div class="layout">

@@ -1,11 +1,6 @@
 Rails.application.routes.draw do
-  # get 'buildings/index'
   root 'sessions#new'
-  resources :users, only: [:new, :create] do
-    collection do
-      get :resources
-    end
-  end
+  resources :users, only: [:new, :create]
 
   get 'preview', to: 'preview#show', as: 'preview'
 

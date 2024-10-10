@@ -13,6 +13,8 @@ class Planet < ApplicationRecord
     increment!(:metal_resource, MetalMine.production(self))
     increment!(:crystal_resource, CrystalMine.production(self))
     increment!(:deuterium_resource, DeuteriumRefinery.production(self))
+
+    broadcast_replace_later_to "planet_#{self.id}", locals: { planet: self }
   end
 
   private
