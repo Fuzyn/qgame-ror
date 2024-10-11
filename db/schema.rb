@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_10_09_151633) do
+ActiveRecord::Schema[7.0].define(version: 2024_10_09_182604) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -69,6 +69,25 @@ ActiveRecord::Schema[7.0].define(version: 2024_10_09_151633) do
     t.index ["user_id"], name: "index_planets_on_user_id"
   end
 
+  create_table "user_technologies", force: :cascade do |t|
+    t.bigint "user_id"
+    t.integer "combat_technology", default: 0
+    t.integer "combustion_drive", default: 0
+    t.integer "drive_technology", default: 0
+    t.integer "energy_technology", default: 0
+    t.integer "hyperspace_drive", default: 0
+    t.integer "impulse_drive", default: 0
+    t.integer "ion_technology", default: 0
+    t.integer "laser_technology", default: 0
+    t.integer "plasma_technology", default: 0
+    t.integer "protective_technology", default: 0
+    t.integer "rocket_technology", default: 0
+    t.integer "storage_technology", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_user_technologies_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", null: false
     t.string "password_digest", null: false
@@ -84,4 +103,5 @@ ActiveRecord::Schema[7.0].define(version: 2024_10_09_151633) do
   add_foreign_key "planet_fleets", "planets"
   add_foreign_key "planet_fleets", "users"
   add_foreign_key "planets", "users"
+  add_foreign_key "user_technologies", "users"
 end

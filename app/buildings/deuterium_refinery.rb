@@ -22,4 +22,8 @@ class DeuteriumRefinery < Buildings
     attr_accessor :description
     attr_accessor :img
   end
+
+  def self.energy(planet)
+    (super * EnergyTechnology.calculated_degree_drop(planet.user)).to_i
+  end
 end

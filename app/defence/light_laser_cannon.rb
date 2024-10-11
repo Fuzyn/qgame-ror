@@ -20,4 +20,8 @@ class LightLaserCannon < Defence
     attr_accessor :description
     attr_accessor :img
   end
+
+  def self.user_attack(user)
+    (super * LaserTechnology.calculated_degree_growth(user)).round(2)
+  end
 end

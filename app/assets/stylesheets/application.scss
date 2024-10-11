@@ -218,6 +218,22 @@ body, html {
   width: fit-content;
 }
 
+.building {
+  .text-green {
+    &:before {
+      content: '+';
+    }
+  }
+}
+
+.technology {
+  .text-green {
+    &:after {
+      content: '%';
+    }
+  }
+}
+
 .bonus_value, .advanced_bonus_value {
   .title {
     font-weight: 600;
@@ -226,10 +242,6 @@ body, html {
 
   .text-green {
     color: #155724;
-
-    &:before {
-      content: '+';
-    }
   }
 
   .text-red {

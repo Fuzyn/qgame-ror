@@ -13,7 +13,7 @@
       <% end %>
     </div>
     <p><%= building[:description] %></p>
-    <%= render 'common/bonus_value', title: "Production", value: building[:production] %>
-    <%= render 'common/bonus_value', title: "Energy", value: building[:energy_consumption] %>
+    <%= render 'common/bonus_building_value', title: "Production", value: building[:production] %>
+    <%= render 'common/bonus_building_value', title: "Energy", value: building[:energy_consumption] %>
   </div>
 </div>

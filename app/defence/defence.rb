@@ -12,13 +12,14 @@ class Defence
   end
 
   def self.planet_values(planet)
+    user = planet.user
     self.subclasses(@source).map do |e|
       {
         points: e.basic_points,
         basic_shield: e.basic_shield,
         basic_attack: e.basic_attack,
-        shield: e.user_shield,
-        attack: e.user_attack,
+        shield: e.user_shield(user).round(2),
+        attack: e.user_attack(user).round(2),
         key: e.basic_key,
         name: e.basic_name,
         description: e.basic_description,

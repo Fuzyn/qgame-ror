@@ -1,6 +1,11 @@
 <div class="advanced_bonus_value">
-    <span class="title"><%= title %></span>
+  <% if user_value != basic_value %>
+    <span class="title"><%= title %>:</span>
     <span class="<%= user_value > 0 ? 'text-green' : user_value < 0 ? 'text-red' : '' %>"><%= user_value %></span>
     <span class="title">( Basic <%= title %>:</span>
     <span><%= basic_value %> )</span>
+  <% else %>
+    <span class="title"><%= title %>:</span>
+    <span><%= user_value %></span>
+  <% end %>
 </div>

@@ -13,10 +13,17 @@ RSpec.describe FleetDefenceHelper, type: :helper do
     end
 
     it 'user_shield' do
-      expect(LightFighter.user_shield).to eq(20)
-      expect(LightIonCannon.user_shield).to eq(1600)
-      expect(Fleet.user_shield).to be nil
-      expect(Defence.user_shield).to be nil
+      expect(LightFighter.user_shield(user)).to eq(10)
+      expect(LightIonCannon.user_shield(user)).to eq(800)
+      expect(Fleet.user_shield(user)).to be nil
+      expect(Defence.user_shield(user)).to be nil
+
+      user.user_technology.increment!('protective_technology', 1)
+
+      expect(LightFighter.user_shield(user)).to eq(10.3)
+      expect(LightIonCannon.user_shield(user)).to eq(824)
+      expect(Fleet.user_shield(user)).to be nil
+      expect(Defence.user_shield(user)).to be nil
     end
 
     it 'basic_attack' do
@@ -27,10 +34,17 @@ RSpec.describe FleetDefenceHelper, type: :helper do
     end
 
     it 'user_attack' do
-      expect(HeavyFighter.user_attack).to eq(120)
-      expect(RocketLauncher.user_attack).to eq(200)
-      expect(Fleet.user_attack).to be nil
-      expect(Defence.user_attack).to be nil
+      expect(HeavyFighter.user_attack(user)).to eq(60)
+      expect(RocketLauncher.user_attack(user)).to eq(100)
+      expect(Fleet.user_attack(user)).to be nil
+      expect(Defence.user_attack(user)).to be nil
+
+      user.user_technology.increment!('combat_technology', 1)
+
+      expect(HeavyFighter.user_attack(user)).to eq(63.6)
+      expect(RocketLauncher.user_attack(user)).to eq(106)
+      expect(Fleet.user_attack(user)).to be nil
+      expect(Defence.user_attack(user)).to be nil
     end
 
     it 'basic_speed' do
@@ -41,10 +55,17 @@ RSpec.describe FleetDefenceHelper, type: :helper do
     end
 
     it 'user_speed' do
-      expect(Cruiser.user_speed).to eq(400)
-      expect(HeavyIonCannon.user_speed).to be nil
-      expect(Fleet.user_speed).to be nil
-      expect(Defence.user_speed).to be nil
+      expect(Cruiser.user_speed(user)).to eq(200)
+      expect(HeavyIonCannon.user_speed(user)).to be nil
+      expect(Fleet.user_speed(user)).to be nil
+      expect(Defence.user_speed(user)).to be nil
+
+      user.user_technology.increment!('drive_technology', 1)
+
+      expect(Cruiser.user_speed(user)).to eq(212)
+      expect(HeavyIonCannon.user_speed(user)).to be nil
+      expect(Fleet.user_speed(user)).to be nil
+      expect(Defence.user_speed(user)).to be nil
     end
 
     it 'basic_capacity' do
@@ -55,10 +76,17 @@ RSpec.describe FleetDefenceHelper, type: :helper do
     end
 
     it 'user_capacity' do
-      expect(Warship.user_capacity).to eq(12000)
-      expect(HeavyIonCannon.user_capacity).to be nil
-      expect(Fleet.user_capacity).to be nil
-      expect(Defence.user_capacity).to be nil
+      expect(Warship.user_capacity(user)).to eq(6000)
+      expect(HeavyIonCannon.user_capacity(user)).to be nil
+      expect(Fleet.user_capacity(user)).to be nil
+      expect(Defence.user_capacity(user)).to be nil
+
+      user.user_technology.increment!('storage_technology', 1)
+
+      expect(Warship.user_capacity(user)).to eq(6120)
+      expect(HeavyIonCannon.user_capacity(user)).to be nil
+      expect(Fleet.user_capacity(user)).to be nil
+      expect(Defence.user_capacity(user)).to be nil
     end
 
     it 'basic_combustion' do
@@ -69,10 +97,17 @@ RSpec.describe FleetDefenceHelper, type: :helper do
     end
 
     it 'user_combustion' do
-      expect(LightFighter.user_combustion).to eq(20)
-      expect(HeavyIonCannon.user_combustion).to be nil
-      expect(Fleet.user_combustion).to be nil
-      expect(Defence.user_combustion).to be nil
+      expect(LightFighter.user_combustion(user)).to eq(10)
+      expect(HeavyIonCannon.user_combustion(user)).to be nil
+      expect(Fleet.user_combustion(user)).to be nil
+      expect(Defence.user_combustion(user)).to be nil
+
+      user.user_technology.increment!('drive_technology', 1)
+
+      expect(LightFighter.user_combustion(user)).to eq(9.6)
+      expect(HeavyIonCannon.user_combustion(user)).to be nil
+      expect(Fleet.user_combustion(user)).to be nil
+      expect(Defence.user_combustion(user)).to be nil
     end
 
     it 'planet_equipment_sum_points' do

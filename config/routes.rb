@@ -20,5 +20,8 @@ Rails.application.routes.draw do
   get 'building', to: 'buildings#index'
   post 'building/build', to: 'buildings#build', as: 'building_build'
 
+  get 'technology', to: 'technology#index'
+  post 'technology/build', to: 'technology#build', as: 'technology_build'
+
   match '*path', to: redirect('/404.html'), via: :all
 end

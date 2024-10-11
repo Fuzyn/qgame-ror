@@ -10,6 +10,7 @@ class User < ApplicationRecord
   has_many :planet_defences, dependent: :destroy
   has_many :planet_buildings, dependent: :destroy
   has_many :planets, dependent: :destroy
+  has_one :user_technology
 
   after_create :create_defaults
 
@@ -43,5 +44,6 @@ class User < ApplicationRecord
         planet_position: planet_position,
         photo_number: photo_number
       })
+    create_user_technology!
   end
 end

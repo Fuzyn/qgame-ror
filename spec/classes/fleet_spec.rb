@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Fleets", type: :request do
+RSpec.describe "Fleets", type: :class do
   let(:planet) { create(:planet) }
 
   describe "should have variables" do

@@ -26,4 +26,16 @@ class Cruiser < Fleet
     attr_accessor :description
     attr_accessor :img
   end
+
+  def self.user_speed(user)
+    (super * ImpulseDrive.calculated_degree_growth(user)).round(2)
+  end
+
+  def self.user_combustion(user)
+    (super * ImpulseDrive.calculated_degree_drop(user)).round(2)
+  end
+
+  def self.user_attack(user)
+    (super * IonTechnology.calculated_degree_growth(user)).round(2)
+  end
 end

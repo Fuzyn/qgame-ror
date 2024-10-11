@@ -20,4 +20,8 @@ class RocketLauncher < Defence
     attr_accessor :description
     attr_accessor :img
   end
+
+  def self.user_attack(user)
+    (super * RocketTechnology.calculated_degree_growth(user)).round(2)
+  end
 end

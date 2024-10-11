@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Defences", type: :request do
+RSpec.describe "Defences", type: :class do
   let(:planet) { create(:planet) }
 
   describe "should have variables" do

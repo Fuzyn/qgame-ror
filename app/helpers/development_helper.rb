@@ -3,12 +3,22 @@
 module DevelopmentHelper
   include ApplicationHelper
 
-  def calculated_degree(planet)
-    level = planet.send(default_relation_name)[self.basic_key]
-    level && level > 0 ? (self.degree_growth ** level).round(2) : 0
+  def calculated_degree_growth(source)
+    calculated_degree(source, 'degree_growth')
+  end
+
+  def calculated_degree_drop(source)
+    calculated_degree(source, 'degree_drop')
   end
 
   def planet_development_sum_points(planet)
-    self.subclasses(default_source).map { |e| e.basic_points * e.calculated_degree(planet) }.sum.to_i
+    self.subclasses(default_source).map { |e| e.basic_points * e.calculated_degree_growth(planet) }.sum.to_i
+  end
+
+  private
+
+  def calculated_degree(source, key)
+    level = source.send(default_relation_name)[self.basic_key]
+    level && level > 0 ? (self.public_send(key) ** level).round(2) : 0
   end
 end

@@ -22,4 +22,8 @@ class PowerStation < Buildings
     attr_accessor :description
     attr_accessor :img
   end
+
+  def self.production(planet)
+    (super * EnergyTechnology.calculated_degree_growth(planet.user)).to_i
+  end
 end

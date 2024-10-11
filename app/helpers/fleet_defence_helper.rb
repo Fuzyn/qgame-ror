@@ -7,9 +7,9 @@ module FleetDefenceHelper
     self.try(:shield)
   end
 
-  def user_shield
+  def user_shield(user)
     begin
-      self.shield * 2
+      (self.shield * ProtectiveTechnology.calculated_degree_growth(user)).round(2)
     rescue
       nil
     end
@@ -19,9 +19,9 @@ module FleetDefenceHelper
     self.try(:attack)
   end
 
-  def user_attack
+  def user_attack(user)
     begin
-      self.attack * 2
+      (self.attack * CombatTechnology.calculated_degree_growth(user)).round(2)
     rescue
       nil
     end
@@ -31,9 +31,9 @@ module FleetDefenceHelper
     self.try(:speed)
   end
 
-  def user_speed
+  def user_speed(user)
     begin
-      self.speed * 2
+      (self.speed * DriveTechnology.calculated_degree_growth(user)).round(2)
     rescue
       nil
     end
@@ -43,9 +43,9 @@ module FleetDefenceHelper
     self.try(:capacity)
   end
 
-  def user_capacity
+  def user_capacity(user)
     begin
-      self.capacity * 2
+      (self.capacity * StorageTechnology.calculated_degree_growth(user)).round(2)
     rescue
       nil
     end
@@ -55,9 +55,9 @@ module FleetDefenceHelper
     self.try(:combustion)
   end
 
-  def user_combustion
+  def user_combustion(user)
     begin
-      self.combustion * 2
+      (self.combustion * DriveTechnology.calculated_degree_drop(user)).round(2)
     rescue
       nil
     end

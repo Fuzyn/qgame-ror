@@ -29,7 +29,7 @@ class Buildings
 
   def self.production(planet)
     begin
-      (self.basic_production + (self.basic_production * self.calculated_degree(planet))).to_i
+      (self.basic_production + (self.basic_production * self.calculated_degree_growth(planet))).to_i
     rescue
       nil
     end
@@ -37,7 +37,7 @@ class Buildings
 
   def self.energy(planet)
     begin
-      (self.energy_consumption * self.calculated_degree(planet)).to_i
+      (self.energy_consumption * self.calculated_degree_growth(planet)).to_i
     rescue
       nil
     end
