@@ -51,6 +51,8 @@ gem 'shoulda-matchers', '~> 5.0'
 gem 'sidekiq'
 gem 'httparty'
 gem 'sidekiq-scheduler'
+gem 'bunny'
+gem 'a9n'
 
 # Use Sass to process CSS
 gem "sassc-rails"

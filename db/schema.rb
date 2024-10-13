@@ -10,9 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_10_09_182604) do
+ActiveRecord::Schema[7.0].define(version: 2024_10_11_164247) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "build_queues", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "user_email"
+    t.string "key"
+    t.string "source"
+    t.integer "quantity"
+    t.datetime "end_time"
+    t.string "secret_hash"
+    t.boolean "deleted", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_build_queues_on_user_id"
+  end
 
   create_table "planet_buildings", force: :cascade do |t|
     t.bigint "user_id"
@@ -96,6 +110,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_10_09_182604) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "build_queues", "users"
   add_foreign_key "planet_buildings", "planets"
   add_foreign_key "planet_buildings", "users"
   add_foreign_key "planet_defences", "planets"

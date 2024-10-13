@@ -1,5 +1,7 @@
+require 'digest'
+
 class ApplicationController < ActionController::Base
-  helper_method :current_user, :current_planet
+  helper_method :current_user, :current_planet, :user_secret
   before_action :require_login
 
   def current_user
@@ -8,6 +10,10 @@ class ApplicationController < ActionController::Base
 
   def current_planet
     @current_planet ||= current_user.planets.find(session[:planet_id]) if session[:planet_id] && current_user
+  end
+
+  def user_secret(date)
+    generate_hash(date)
   end
 
   def redirect_if_logged_in
@@ -19,6 +25,12 @@ class ApplicationController < ActionController::Base
   end
 
   private
+
+  def generate_hash(date)
+    input = "#{date.to_s}#{A9n.hash_secret}"
+
+    Digest::SHA256.hexdigest(input)
+  end
 
   def require_login
     unless current_user

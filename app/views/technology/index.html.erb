@@ -8,6 +8,10 @@
   </div>
 <% end %>
 
+<% @technology_queue.each do |element| %>
+  <%= render partial: "common/queue", locals: { element: element, path: technology_path } %>
+<% end %>
+
 <% @user_technology.each do |technology| %>
   <%= render partial: "technology/technology", locals: { technology: technology } %>
 <% end %>

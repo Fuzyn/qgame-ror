@@ -8,6 +8,10 @@
   </div>
 <% end %>
 
+<% @building_queue.each do |element| %>
+  <%= render partial: "common/queue", locals: { element: element, path: building_path } %>
+<% end %>
+
 <% @planet_buildings.each do |building| %>
   <%= render partial: "building", locals: { building: building } %>
 <% end %>

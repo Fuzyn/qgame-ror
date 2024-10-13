@@ -10,6 +10,7 @@ class User < ApplicationRecord
   has_many :planet_defences, dependent: :destroy
   has_many :planet_buildings, dependent: :destroy
   has_many :planets, dependent: :destroy
+  has_many :build_queues, dependent: :destroy
   has_one :user_technology
 
   after_create :create_defaults

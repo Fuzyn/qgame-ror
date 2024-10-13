@@ -1,0 +1,7 @@
+<div class="countdown">
+  <div class="description">
+    <%= image_tag(element[:img], alt: element[:name]) %>
+    <%= element[:name] %>
+  </div>
+  <div data-controller="countdown" data-countdown-seconds-value="<%= element[:end_time] - Time.now %>" data-countdown-redirect-url-value="<%= path %>"></div>
+</div>
