@@ -31,7 +31,7 @@ class BuildingsController < ApplicationController
       ).add_assignment
       sleep(0.5)
       create_log("Building: User #{current_user.email} build #{name}. Current status: #{current_planet.planet_building[key]} - #{name}")
-      redirect_to building_path, notice: "Build #{current_planet.planet_building[key]} - #{name}"
+      redirect_to building_path, notice: "Build #{current_planet.planet_building[key] + level} - #{name}"
     else
       create_log("Building: Failed build #{name} for user #{current_user.email}")
       redirect_to building_path, alert: "Error while building #{name}"

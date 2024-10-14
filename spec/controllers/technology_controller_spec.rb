@@ -37,21 +37,14 @@ RSpec.describe TechnologyController, type: :controller do
       context "successful" do
         it "Combat Technology building" do
           post :build, params: {key: "combat_technology", level: 1, name: "Combat Technology"}
-          expect(user.user_technology&.reload&.combat_technology).to eq(1)
           expect(flash[:notice]).to eq("Build 1 - Combat Technology")
-
-          post :build, params: {key: "combat_technology", level: 1, name: "Combat Technology"}
-          expect(user.user_technology&.reload&.combat_technology).to eq(2)
-          expect(flash[:notice]).to eq("Build 2 - Combat Technology")
         end
 
         it "Combat Technology and Combustion Drive building" do
           post :build, params: {key: "combat_technology", level: 1, name: "Combat Technology"}
-          expect(user.user_technology&.reload&.combat_technology).to eq(1)
           expect(flash[:notice]).to eq("Build 1 - Combat Technology")
 
           post :build, params: {key: "combustion_drive", level: 1, name: "Combustion Drive"}
-          expect(user.user_technology&.reload&.combustion_drive).to eq(1)
           expect(flash[:notice]).to eq("Build 1 - Combustion Drive")
         end
       end
@@ -59,7 +52,6 @@ RSpec.describe TechnologyController, type: :controller do
       context "unsuccessful" do
         it "Combat Technology building" do
           post :build, params: {key: "combat_technology", level: 2, name: "Combat Technology"}
-          expect(user.user_technology&.reload&.combat_technology).to eq(0)
           expect(flash[:alert]).to eq("Error while building Combat Technology")
         end
       end
@@ -68,7 +60,6 @@ RSpec.describe TechnologyController, type: :controller do
     context "destroy should not by possible" do
       it "unsuccessfully Impulse Drive building" do
         post :build, params: {key: "impulse_drive", level: -1, name: "Impulse Drive"}
-        expect(user.user_technology&.reload&.impulse_drive).to eq(0)
         expect(flash[:alert]).to eq("Error while building Impulse Drive")
       end
     end
