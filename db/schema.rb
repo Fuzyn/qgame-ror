@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_10_11_164247) do
+ActiveRecord::Schema[7.0].define(version: 2024_10_14_162001) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -83,6 +83,31 @@ ActiveRecord::Schema[7.0].define(version: 2024_10_11_164247) do
     t.index ["user_id"], name: "index_planets_on_user_id"
   end
 
+  create_table "send_fleet_queues", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "planet_id"
+    t.string "user_email"
+    t.string "travel_type"
+    t.integer "galaxy"
+    t.integer "solar_system"
+    t.integer "planet_position"
+    t.integer "cruiser"
+    t.integer "light_fighter"
+    t.integer "heavy_fighter"
+    t.integer "warship"
+    t.integer "metal_resource"
+    t.integer "crystal_resource"
+    t.integer "deuterium_resource"
+    t.datetime "end_time"
+    t.string "secret_hash"
+    t.string "direction"
+    t.boolean "deleted", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["planet_id"], name: "index_send_fleet_queues_on_planet_id"
+    t.index ["user_id"], name: "index_send_fleet_queues_on_user_id"
+  end
+
   create_table "user_technologies", force: :cascade do |t|
     t.bigint "user_id"
     t.integer "combat_technology", default: 0
@@ -118,5 +143,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_10_11_164247) do
   add_foreign_key "planet_fleets", "planets"
   add_foreign_key "planet_fleets", "users"
   add_foreign_key "planets", "users"
+  add_foreign_key "send_fleet_queues", "planets"
+  add_foreign_key "send_fleet_queues", "users"
   add_foreign_key "user_technologies", "users"
 end

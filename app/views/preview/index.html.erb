@@ -1,3 +1,6 @@
+<div id="send_fleet_queues">
+  <%= render partial: 'send_fleet_queues/send_fleet_queue', collection: current_user.send_fleet_queues.active, locals: { path: "" } %>
+</div>
 <h1>Welcome, <%= @user.email %>!</h1>
 <h1>Welcome, <%= @planet.name %>!</h1>
 <p>You have successfully logged in.</p>

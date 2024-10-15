@@ -1,5 +1,5 @@
 class PreviewController < ApplicationController
-  def show
+  def index
     @user = current_user
     @planet = current_planet
     @fleet_points = Fleet.planet_equipment_sum_points(current_planet)

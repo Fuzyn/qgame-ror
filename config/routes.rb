@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   root 'sessions#new'
   resources :users, only: [:new, :create]
 
-  get 'preview', to: 'preview#show', as: 'preview'
+  get 'preview', to: 'preview#index', as: 'preview'
 
   get 'signup', to: 'users#new'
   post 'signup', to: 'users#create'
@@ -22,6 +22,10 @@ Rails.application.routes.draw do
 
   get 'technology', to: 'technology#index'
   post 'technology/build', to: 'technology#build', as: 'technology_build'
+
+  get 'galaxy', to: 'galaxy#index'
+  post 'add_fleet', to: 'galaxy#add_fleet', as: 'add_fleet'
+  post 'send_fleet', to: 'galaxy#send_fleet', as: 'send_fleet'
 
   match '*path', to: redirect('/404.html'), via: :all
 end

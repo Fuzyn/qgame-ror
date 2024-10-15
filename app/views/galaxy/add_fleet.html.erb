@@ -1,0 +1,82 @@
+<turbo-frame id="galaxy_planet_<%= @index %>" data-controller="fleet">
+  <div class="galaxy-fleet-send-wrapper">
+    <form action="<%= send_fleet_path %>" method="post">
+      <input hidden name="index" value="<%= @index %>">
+      <input hidden name="planet_position" value="<%= @planet_position %>">
+      <input hidden name="galaxy" value="<%= @galaxy %>">
+      <input hidden name="solar_system" value="<%= @solar_system %>">
+      <select name="travel_type">
+        <% @select_options.each do |option| %>
+          <option value="<%= option[:value] %>"><%= option[:label] %></option>
+        <% end %>
+      </select>
+      <div class="values-wrapper">
+        <div class="fleet">
+          <% @ships.each do |ship| %>
+            <div class="row">
+              <label for="<%= ship[:key] %>"><%= ship[:name] %></label>
+              <input
+                type="number"
+                name="<%= ship[:key] %>"
+                id="<%= ship[:key] %>"
+                value="0"
+                min="0"
+                max="<%= ship[:count] %>"
+                data-fleet-target="input"
+                data-action="input->fleet#validate"
+              >
+              <span class="legend">(Max <%= ship[:count] %>)</span>
+            </div>
+          <% end %>
+        </div>
+        <div class="resource">
+          <div class="row">
+            <label for="metal_resource">Metal</label>
+            <input
+              type="number"
+              name="metal_resource"
+              id="metal_resource"
+              value="0"
+              min="0"
+              max="<%= current_planet.metal_resource %>"
+              data-fleet-target="input"
+            >
+            <span class="legend">(Max <%= current_planet.metal_resource %>)</span>
+          </div>
+          <div class="row">
+            <label for="crystal_resource">Crystal</label>
+            <input
+              type="number"
+              name="crystal_resource"
+              id="crystal_resource"
+              value="0"
+              min="0"
+              max="<%= current_planet.crystal_resource %>"
+              data-fleet-target="input"
+            >
+            <span class="legend">(Max <%= current_planet.crystal_resource %>)</span>
+          </div>
+          <div class="row">
+            <label for="deuterium_resource">Deuter</label>
+            <input
+              type="number"
+              name="deuterium_resource"
+              id="deuterium_resource"
+              value="0"
+              min="0"
+              max="<%= current_planet.deuterium_resource %>"
+              data-fleet-target="input"
+            >
+            <span class="legend">(Max <%= current_planet.deuterium_resource %>)</span>
+          </div>
+        </div>
+      </div>
+      <button
+        type="submit"
+        data-fleet-target="submit"
+        disabled>
+        Send Fleet
+      </button>
+    </form>
+  </div>
+</turbo-frame>

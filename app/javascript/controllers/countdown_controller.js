@@ -35,7 +35,9 @@ export default class extends Controller {
 
     redirectToShipyard() {
         setTimeout(() => {
-            window.location.href = this.redirectUrlValue
+            if (this.redirectUrlValue) {
+                window.location.href = this.redirectUrlValue
+            }
         }, 1000)
     }
 

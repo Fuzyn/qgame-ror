@@ -1,0 +1,41 @@
+<div class="galaxy-select-wrapper">
+  <h3>Planets in Galaxy <%= @galaxy %>, Solar System <%= @solar_system %></h3>
+
+  <%= form_with url: galaxy_path, method: :get do %>
+    <div class="galaxy-form-inputs">
+      <div class="galaxy-form-input">
+        <label for="galaxy">Galaxy:</label>
+        <input type="number" name="galaxy" id="galaxy" value="<%= @galaxy %>" min="1" max="9" required>
+        <span class="galaxy-form-legend">(1-9)</span>
+      </div>
+      <div class="galaxy-form-input">
+        <label for="solar_system">System:</label>
+        <input type="number" name="solar_system" id="solar_system" value="<%= @solar_system %>" min="1" max="255" required>
+        <span class="galaxy-form-legend">(1-255)</span>
+      </div>
+    </div>
+
+    <div>
+      <%= submit_tag 'Show Planets' %>
+    </div>
+  <% end %>
+</div>
+
+<div data-controller="fleet" class="galaxy-planets">
+  <% @planets.each_with_index do |planet, index| %>
+    <div class="galaxy-planet-wrapper">
+      <%= turbo_frame_tag "galaxy_planet_#{index}" do %>
+        <% if planet %>
+          <% if planet.name == 'Unexplored territories' %>
+            <span><%= planet.name %></span>
+          <% else %>
+            <span>Planet <%= index + 1 %>: <%= planet.name %></span>
+          <% end %>
+        <% else %>
+          <span class="empty-position">Empty position <%= index + 1 %></span>
+        <% end %>
+        <%= button_to 'Add Fleet', add_fleet_path, method: :post, params: { index: index, planet_id: planet&.id, galaxy: @galaxy, solar_system: @solar_system }, data: { action: "fleet#addFleet", index: index } %>
+      <% end %>
+    </div>
+  <% end %>
+</div>

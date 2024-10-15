@@ -1,0 +1,9 @@
+<div id="<%= dom_id(send_fleet_queue) %>">
+  <div class="countdown">
+    <div class="description">
+      Mission: <%= send_fleet_queue[:travel_type].capitalize %>
+    </div>
+    <span>Galaxy: <%= send_fleet_queue[:galaxy] %> Solar System: <%= send_fleet_queue[:solar_system] %> Planet Position: <%= send_fleet_queue[:planet_position] %> </span>
+    <div data-controller="countdown" data-countdown-seconds-value="<%= send_fleet_queue[:end_time] - Time.now %>" data-countdown-redirect-url-value="<%= path.present? ? path : nil %>"></div>
+  </div>
+</div>

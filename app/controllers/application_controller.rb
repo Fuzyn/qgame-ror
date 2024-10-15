@@ -24,6 +24,16 @@ class ApplicationController < ActionController::Base
     SendLogWorkerJob.perform_later(message, current_user)
   end
 
+  def schedule_fleet_task(record)
+    delay = record.end_time - Time.now
+
+    if delay.positive?
+      FleetWorker.perform_in(delay, record.id)
+    else
+      puts "It is PAST!!"
+    end
+  end
+
   private
 
   def generate_hash(date)

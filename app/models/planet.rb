@@ -5,6 +5,7 @@ class Planet < ApplicationRecord
   has_one :planet_fleet, dependent: :destroy
   has_one :planet_defence, dependent: :destroy
   has_one :planet_building, dependent: :destroy
+  has_many :send_fleet_queues, dependent: :destroy
 
   validate :max_planets_limit, on: :create
   after_create :create_defaults
