@@ -2,6 +2,7 @@ class GalaxyController < ApplicationController
   include SendFleetHelper
 
   before_action :set_coordinate, only: [:index, :add_fleet]
+
   def index
     planets_in_system = Planet.where(galaxy: @galaxy, solar_system: @solar_system)
 
@@ -24,7 +25,7 @@ class GalaxyController < ApplicationController
     @select_options = select_options(planet_exist, enemy_planet, @index.to_i == 15)
   end
 
-  def send_fleet
+  def send_galaxy_fleet
     @index = params[:index]
     add_fleet_to_queue(params)
   end

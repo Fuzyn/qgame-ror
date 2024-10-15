@@ -24,8 +24,12 @@ Rails.application.routes.draw do
   post 'technology/build', to: 'technology#build', as: 'technology_build'
 
   get 'galaxy', to: 'galaxy#index'
-  post 'add_fleet', to: 'galaxy#add_fleet', as: 'add_fleet'
-  post 'send_fleet', to: 'galaxy#send_fleet', as: 'send_fleet'
+  post 'add_fleet', to: 'galaxy#add_fleet', as: 'add_galaxy_fleet'
+  post 'send_galaxy_fleet', to: 'galaxy#send_galaxy_fleet', as: 'send_galaxy_fleet'
+
+  get 'fleet', to: 'fleet#index'
+  post 'add_mission', to: 'fleet#add_mission', as: 'add_mission'
+  post 'send_fleet', to: 'fleet#send_fleet', as: 'send_fleet'
 
   match '*path', to: redirect('/404.html'), via: :all
 end

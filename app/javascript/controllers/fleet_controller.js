@@ -44,6 +44,10 @@ export default class extends Controller {
             }
         });
 
-        this.submitTarget.disabled = !isValid;
+        const submitButton = document.getElementById('submit-validate-button')
+
+        if (submitButton) {
+            submitButton.disabled = !isValid;
+        }
     }
 }

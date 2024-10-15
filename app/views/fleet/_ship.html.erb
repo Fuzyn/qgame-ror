@@ -1,0 +1,16 @@
+<div class="fleet-row" data-controller="fleet">
+  <%= image_tag(ship[:img], alt: ship[:name]) %>
+  <label for="<%= ship[:key] %>"><%= ship[:name] %></label>
+  <input
+    type="number"
+    name="<%= ship[:key] %>"
+    id="<%= ship[:key] %>"
+    value="0"
+    min="0"
+    max="<%= ship[:count] %>"
+    <%= "disabled" if disabled %>
+    data-fleet-target="input"
+    data-action="input->fleet#validate"
+  >
+  <span class="legend">(Max <%= ship[:count] %>)</span>
+</div>

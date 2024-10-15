@@ -34,7 +34,7 @@
         <% else %>
           <span class="empty-position">Empty position <%= index + 1 %></span>
         <% end %>
-        <%= button_to 'Add Fleet', add_fleet_path, method: :post, params: { index: index, planet_id: planet&.id, galaxy: @galaxy, solar_system: @solar_system }, data: { action: "fleet#addFleet", index: index } %>
+        <%= button_to 'Add Fleet', add_galaxy_fleet_path, method: :post, params: { index: index, planet_id: planet&.id, galaxy: @galaxy, solar_system: @solar_system }, data: { action: "fleet#addFleet", index: index } %>
       <% end %>
     </div>
   <% end %>

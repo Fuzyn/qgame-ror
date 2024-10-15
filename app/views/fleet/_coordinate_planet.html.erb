@@ -1,0 +1,61 @@
+<div class="fleet-send-wrapper">
+  <div>
+    <div class="input-row">
+      <label for="galaxy">Galaxy</label>
+      <input
+        type="number"
+        name="galaxy"
+        id="galaxy"
+        value="<%= @planet&.galaxy || @galaxy %>"
+        min="1"
+        max="9"
+        <%= "disabled" if disabled %>
+        data-fleet-target="input"
+      >
+      <input
+        hidden
+        name="galaxy"
+        id="galaxy"
+        value="<%= @planet&.galaxy || @galaxy %>"
+      >
+    </div>
+    <div class="input-row">
+      <label for="solar_system">Solar system</label>
+      <input
+        type="number"
+        name="solar_system"
+        id="solar_system"
+        value="<%= @planet&.solar_system || @solar_system %>"
+        min="1"
+        max="255"
+        <%= "disabled" if disabled %>
+        data-fleet-target="input"
+      >
+      <input
+        hidden
+        name="solar_system"
+        id="solar_system"
+        value="<%= @planet&.solar_system || @solar_system %>"
+      >
+    </div>
+    <div class="input-row">
+      <label for="planet_position">Planet position</label>
+      <input
+        type="number"
+        name="planet_position"
+        id="planet_position"
+        value="<%= @planet&.planet_position || @planet_position %>"
+        min="1"
+        max="16"
+        <%= "disabled" if disabled %>
+        data-fleet-target="input"
+      >
+      <input
+        hidden
+        name="planet_position"
+        id="planet_position"
+        value="<%= @planet&.planet_position || @planet_position %>"
+      >
+    </div>
+  </div>
+</div>

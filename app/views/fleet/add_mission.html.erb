@@ -1,0 +1,26 @@
+<turbo-frame id="fleet_planet_<%= current_planet.id %>">
+  <%= form_with url: send_fleet_path, method: :post, local: true do |form| %>
+    <%= render partial: 'fleet/ship', collection: @ships, locals: {disabled: false} %>
+
+    <div class="fleet-send-wrapper">
+      <%= render 'fleet/coordinate_planet', disabled: true %>
+
+      <select name="travel_type">
+        <% @select_options.each do |option| %>
+          <option value="<%= option[:value] %>"><%= option[:label] %></option>
+        <% end %>
+      </select>
+
+      <div class="action-buttons">
+        <button
+          id="submit-validate-button"
+          type="submit"
+          data-fleet-target="submit"
+          disabled>
+          Send Fleet
+        </button>
+      </div>
+    </div>
+  <% end %>
+  <%= link_to "Back", fleet_path, class: "button-back" %>
+</turbo-frame>

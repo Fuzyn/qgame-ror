@@ -1,6 +1,6 @@
 <turbo-frame id="galaxy_planet_<%= @index %>" data-controller="fleet">
   <div class="galaxy-fleet-send-wrapper">
-    <form action="<%= send_fleet_path %>" method="post">
+    <form action="<%= send_galaxy_fleet_path %>" method="post">
       <input hidden name="index" value="<%= @index %>">
       <input hidden name="planet_position" value="<%= @planet_position %>">
       <input hidden name="galaxy" value="<%= @galaxy %>">
@@ -72,9 +72,11 @@
         </div>
       </div>
       <button
+        id="submit-validate-button"
         type="submit"
         data-fleet-target="submit"
-        disabled>
+        disabled
+      >
         Send Fleet
       </button>
     </form>
