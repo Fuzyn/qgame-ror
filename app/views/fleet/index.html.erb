@@ -1,5 +1,7 @@
-<div class="fleet-wrapper">
-  <h3>Planet Ships</h3>
+<div class="content-item column">
+  <div class="content-header justify-center">
+    <h3>Planet Ships</h3>
+  </div>
 
   <div id="send_fleet_queues">
     <%= render partial: 'send_fleet_queues/send_fleet_queue', collection: current_user.send_fleet_queues.active, locals: { path: "" } %>
@@ -7,10 +9,16 @@
 
   <%= turbo_frame_tag "fleet_planet_#{current_planet.id}" do %>
     <%= form_with url: add_mission_path, method: :post, local: true do |form| %>
-      <%= render partial: 'fleet/ship', collection: @ships, locals: {disabled: true} %>
-      <div class="fleet-send-wrapper">
+
+      <%= render partial: "ships", locals: {disabled: true, ships: @ships} %>
+
+      <div class="content-item align-center">
+
         <%= render 'fleet/coordinate_planet', disabled: false %>
-        <%= form.submit 'Next' %>
+
+        <div class="submit-button">
+          <%= form.submit 'Next' %>
+        </div>
       </div>
     <% end %>
   <% end %>

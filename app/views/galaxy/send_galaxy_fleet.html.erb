@@ -1,3 +1,5 @@
 <turbo-frame id="galaxy_planet_<%= @index %>" data-controller="fleet">
-  <h3 class="fleet-send-success" data-action="click->fleet#resetSpecificPlanet" data-index="<%= @index %>">Fleet shipped successfully</h3>
+  <div data-action="click->fleet#resetSpecificPlanet" data-index="<%= @index %>" class="content-item padding-8">
+    <h3 class="text-center full-width">Fleet shipped successfully</h3>
+  </div>
 </turbo-frame>

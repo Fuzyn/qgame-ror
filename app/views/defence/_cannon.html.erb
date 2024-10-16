@@ -1,9 +1,9 @@
-<div class="equipment-item">
+<div class="content-item">
   <% if element[:img].present? && File.exist?(Rails.root.join('app', 'assets', 'images', element[:img])) %>
     <%= image_tag(element[:img], alt: element[:name]) %>
   <% end %>
   <div>
-    <div class="equipment-header">
+    <div class="content-header">
       <div class="tooltip-container">
         <h3 class="tooltip-trigger"><%= element[:name] %> (<%=element[:count] %>)</h3>
         <span class="tooltip-text">
@@ -13,11 +13,13 @@
       </div>
     </div>
     <p><%= element[:description] %></p>
-    <%= form_with url: defence_build_path, method: :post, local: true do |form| %>
+    <%= form_with url: defence_build_path, method: :post, local: true, class: "content-item padding-8" do |form| %>
       <%= hidden_field_tag :key, element[:key] %>
       <%= hidden_field_tag :name, element[:name] %>
       <%= number_field_tag :quantity, nil, min: 1, step: 1 %>
-      <%= form.submit 'Build' %>
+      <div class="submit-button">
+        <%= form.submit 'Build' %>
+      </div>
     <% end %>
   </div>
 </div>

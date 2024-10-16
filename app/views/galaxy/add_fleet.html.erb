@@ -1,19 +1,17 @@
 <turbo-frame id="galaxy_planet_<%= @index %>" data-controller="fleet">
-  <div class="galaxy-fleet-send-wrapper">
-    <form action="<%= send_galaxy_fleet_path %>" method="post">
+  <div>
+    <form action="<%= send_galaxy_fleet_path %>" method="post" class="content-item align-center justify-between padding-8">
       <input hidden name="index" value="<%= @index %>">
       <input hidden name="planet_position" value="<%= @planet_position %>">
       <input hidden name="galaxy" value="<%= @galaxy %>">
       <input hidden name="solar_system" value="<%= @solar_system %>">
-      <select name="travel_type">
-        <% @select_options.each do |option| %>
-          <option value="<%= option[:value] %>"><%= option[:label] %></option>
-        <% end %>
-      </select>
-      <div class="values-wrapper">
-        <div class="fleet">
+
+      <%= render "common/select_options", select_options: @select_options %>
+
+      <div class="content-item">
+        <div>
           <% @ships.each do |ship| %>
-            <div class="row">
+            <div>
               <label for="<%= ship[:key] %>"><%= ship[:name] %></label>
               <input
                 type="number"
@@ -29,8 +27,8 @@
             </div>
           <% end %>
         </div>
-        <div class="resource">
-          <div class="row">
+        <div>
+          <div>
             <label for="metal_resource">Metal</label>
             <input
               type="number"
@@ -43,7 +41,7 @@
             >
             <span class="legend">(Max <%= current_planet.metal_resource %>)</span>
           </div>
-          <div class="row">
+          <div>
             <label for="crystal_resource">Crystal</label>
             <input
               type="number"
@@ -56,7 +54,7 @@
             >
             <span class="legend">(Max <%= current_planet.crystal_resource %>)</span>
           </div>
-          <div class="row">
+          <div>
             <label for="deuterium_resource">Deuter</label>
             <input
               type="number"
@@ -71,14 +69,17 @@
           </div>
         </div>
       </div>
-      <button
-        id="submit-validate-button"
-        type="submit"
-        data-fleet-target="submit"
-        disabled
-      >
-        Send Fleet
-      </button>
+
+      <div class="submit-button">
+        <button
+          id="submit-validate-button"
+          type="submit"
+          data-fleet-target="submit"
+          disabled
+        >
+          Send Fleet
+        </button>
+      </div>
     </form>
   </div>
 </turbo-frame>

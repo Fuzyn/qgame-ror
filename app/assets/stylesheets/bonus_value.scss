@@ -1,0 +1,38 @@
+.bonus_value {
+  background-color: rgba(0,0,0,0.7);
+  padding: 2px 5px;
+  border-radius: 5px;
+  margin: 1px;
+  width: fit-content;
+}
+
+.building {
+  .text-green {
+    &:before {
+      content: '+';
+    }
+  }
+}
+
+.technology {
+  .text-green {
+    &:after {
+      content: '%';
+    }
+  }
+}
+
+.bonus_value, .advanced_bonus_value {
+  .title {
+    font-weight: 600;
+    margin-right: 3px;
+  }
+
+  .text-green {
+    color: #155724;
+  }
+
+  .text-red {
+    color: #B00100;
+  }
+}

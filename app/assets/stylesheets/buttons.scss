@@ -1,0 +1,40 @@
+$font-size: 13px;
+
+.submit-button {
+  input, button, a {
+    background-color: #007bff;
+
+    &:hover {
+      background-color: #0056b3;
+    }
+  }
+}
+
+.cancel-button {
+  input, button, a {
+    background-color: #ff4141;
+
+    &:hover {
+      background-color: #ff1616;
+    }
+  }
+}
+
+.cancel-button, .submit-button {
+  margin: 2px;
+  
+  input, button, a {
+    width: 100%;
+    padding: 10px;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: $font-size;
+    text-decoration: none;
+
+    span {
+      font-size: $font-size;
+    }
+  }
+}

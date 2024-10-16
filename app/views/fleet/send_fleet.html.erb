@@ -1,5 +1,9 @@
 <turbo-frame id="fleet_planet_<%= current_planet.id %>">
-  <%= render partial: 'fleet/ship', collection: @ships, locals: {disabled: true} %>
-  <h3>Fleet shipped successfully</h3>
-  <%= link_to "Back", fleet_path, class: "button-back" %>
+  <%= render partial: "ships", locals: {disabled: false, ships: @ships} %>
+
+  <div class="content-item align-center">
+    <h3>Fleet shipped successfully</h3>
+  </div>
+
+  <%= render "back_button" %>
 </turbo-frame>

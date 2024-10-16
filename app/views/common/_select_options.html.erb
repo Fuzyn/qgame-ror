@@ -1,0 +1,5 @@
+<select name="travel_type">
+  <% select_options.each do |option| %>
+    <option value="<%= option[:value] %>"><%= option[:label] %></option>
+  <% end %>
+</select>

@@ -1,0 +1,9 @@
+<% if planet %>
+  <% if planet.name == 'Unexplored territories' %>
+    <span><%= planet.name %></span>
+  <% else %>
+    <span>Planet <%= index + 1 %>: <%= planet.name %></span>
+  <% end %>
+<% else %>
+  <span class="legend">Empty position <%= index + 1 %></span>
+<% end %>

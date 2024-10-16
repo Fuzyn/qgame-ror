@@ -1,6 +1,6 @@
-<div class="fleet-row" data-controller="fleet">
-  <%= image_tag(ship[:img], alt: ship[:name]) %>
-  <label for="<%= ship[:key] %>"><%= ship[:name] %></label>
+<div class="content-item align-center" data-controller="fleet">
+  <%= image_tag(ship[:img], alt: ship[:name], class: "mini-img") %>
+  <label for="<%= ship[:key] %>" class="flex-grow-1"><%= ship[:name] %></label>
   <input
     type="number"
     name="<%= ship[:key] %>"

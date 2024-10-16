@@ -1,0 +1,5 @@
+<% if ships.present? %>
+  <%= render partial: 'fleet/ship', collection: ships, locals: { disabled: disabled } %>
+<% else %>
+  <h3 class="text-center">You don't have any ships!</h3>
+<% end %>

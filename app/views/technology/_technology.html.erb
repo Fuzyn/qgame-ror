@@ -1,16 +1,20 @@
-<div class="equipment-item">
+<div class="content-item">
   <% if technology[:img].present? && File.exist?(Rails.root.join('app', 'assets', 'images', technology[:img])) %>
     <%= image_tag(technology[:img], alt: technology[:name]) %>
   <% end %>
   <div>
-    <div class="equipment-header">
+    <div class="content-header">
       <h3><%= technology[:name] %> (<%= technology[:level] %>)</h3>
-      <%= button_to technology_build_path, method: :post, local: true, params: {level: 1, name: technology[:name], key: technology[:key]} do %>
-        <span class="material-icons">add</span>
-      <% end %>
+
+      <div class="submit-button">
+        <%= button_to technology_build_path, method: :post, local: true, params: {level: 1, name: technology[:name], key: technology[:key]} do %>
+          <span class="material-icons">add</span>
+        <% end %>
+      </div>
+
     </div>
     <p><%= technology[:description] %></p>
-    <%= render 'common/bonus_technology_value', title: "Increasing value", value: (technology[:degree_growth] * 100).to_i - 100 %>
-    <%= render 'common/bonus_technology_value', title: "Reducing the value", value: 100 - (technology[:degree_drop] * 100).to_i %>
+    <%= render 'bonus_technology_value', title: "Increasing value", value: (technology[:degree_growth] * 100).to_i - 100 %>
+    <%= render 'bonus_technology_value', title: "Reducing the value", value: 100 - (technology[:degree_drop] * 100).to_i %>
   </div>
 </div>
