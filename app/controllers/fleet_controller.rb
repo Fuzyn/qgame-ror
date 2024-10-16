@@ -19,7 +19,7 @@ class FleetController < ApplicationController
   end
 
   def send_fleet
-    add_fleet_to_queue(params)
+    add_fleet_to_queue(params, current_user, current_planet)
     set_ships
   end
 

@@ -1,3 +1,5 @@
+require 'digest'
+
 module ApplicationHelper
   def subclasses(source)
     eager_load_classes(source)
@@ -40,5 +42,27 @@ module ApplicationHelper
 
   def class_order
     self.try(:order)
+  end
+
+  def schedule_fleet_task(record)
+    delay = record.end_time - Time.now
+
+    if delay.positive?
+      FleetWorker.perform_in(delay, record.id)
+    else
+      puts "It is PAST!!"
+    end
+  end
+
+  def user_secret(date)
+    generate_hash(date)
+  end
+
+  private
+
+  def generate_hash(date)
+    input = "#{date.to_s}#{A9n.hash_secret}"
+
+    Digest::SHA256.hexdigest(input)
   end
 end

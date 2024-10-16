@@ -1,6 +1,6 @@
-require 'digest'
-
 class ApplicationController < ActionController::Base
+  include ApplicationHelper
+
   helper_method :current_user, :current_planet, :user_secret
   before_action :require_login
 
@@ -12,10 +12,6 @@ class ApplicationController < ActionController::Base
     @current_planet ||= current_user.planets.find(session[:planet_id]) if session[:planet_id] && current_user
   end
 
-  def user_secret(date)
-    generate_hash(date)
-  end
-
   def redirect_if_logged_in
     redirect_to preview_path if current_user
   end
@@ -24,23 +20,7 @@ class ApplicationController < ActionController::Base
     SendLogWorkerJob.perform_later(message, current_user)
   end
 
-  def schedule_fleet_task(record)
-    delay = record.end_time - Time.now
-
-    if delay.positive?
-      FleetWorker.perform_in(delay, record.id)
-    else
-      puts "It is PAST!!"
-    end
-  end
-
   private
-
-  def generate_hash(date)
-    input = "#{date.to_s}#{A9n.hash_secret}"
-
-    Digest::SHA256.hexdigest(input)
-  end
 
   def require_login
     unless current_user

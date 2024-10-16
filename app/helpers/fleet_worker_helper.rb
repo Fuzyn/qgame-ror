@@ -2,9 +2,9 @@
 
 module FleetWorkerHelper
   include SendFleetHelper
+  include ApplicationHelper
 
   def execute_sent_fleet(record)
-    Rails.logger.info("Start time: #{Time.now}")
     if record.direction == 'to'
       if record.travel_type == 'transport'
         transport(record)
@@ -56,7 +56,6 @@ module FleetWorkerHelper
     planet.crystal_resource += record.crystal_resource
     planet.deuterium_resource += record.deuterium_resource
     planet.save!
-    Rails.logger.info("Start time: #{Time.now}")
   end
 
   def transport(record)
@@ -66,6 +65,11 @@ module FleetWorkerHelper
     target_planet.crystal_resource += record.crystal_resource
     target_planet.deuterium_resource += record.deuterium_resource
     target_planet.save!
+
+    record.metal_resource = 0
+    record.crystal_resource = 0
+    record.deuterium_resource = 0
+    record.save!
 
     turn_fleet_around(record)
   end
@@ -90,7 +94,10 @@ module FleetWorkerHelper
         galaxy: record.galaxy,
         solar_system: record.solar_system,
         planet_position: record.planet_position,
-        photo_number: rand(1..1)
+        photo_number: rand(1..1),
+        metal_resource: record.metal_resource,
+        crystal_resource: record.crystal_resource,
+        deuterium_resource: record.deuterium_resource
       }
     )
 

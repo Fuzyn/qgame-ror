@@ -1,4 +1,6 @@
 module SendFleetHelper
+  include ApplicationHelper
+
   def select_options(is_planet_exist, is_enemy_planet, is_expedition)
     result = []
     transport = { value: 'transport', label: 'Transport' }
@@ -51,7 +53,7 @@ module SendFleetHelper
     result
   end
 
-  def add_fleet_to_queue(params)
+  def add_fleet_to_queue(params, user, planet)
     galaxy = params[:galaxy]
     solar_system = params[:solar_system]
     planet_position = params[:planet_position]
@@ -78,9 +80,9 @@ module SendFleetHelper
         {
           end_time: end_time,
           secret_hash: user_secret(end_time.strftime("%Y-%m-%dT%H:%M:%S.%L%:z")),
-          user: current_user,
-          planet: current_planet,
-          user_email: current_user.email,
+          user: user,
+          planet: planet,
+          user_email: user.email,
           galaxy: galaxy,
           solar_system: solar_system,
           planet_position: planet_position,
@@ -97,8 +99,8 @@ module SendFleetHelper
       )
       schedule_fleet_task(new_fleet)
 
-      fleet = current_planet.planet_fleet
-      planet = current_planet
+      fleet = planet.planet_fleet
+      planet = planet
 
       fleet.cruiser -= cruiser
       fleet.light_fighter -= light_fighter
