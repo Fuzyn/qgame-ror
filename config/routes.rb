@@ -34,5 +34,7 @@ Rails.application.routes.draw do
   get 'messages', to: 'messages#index'
   post 'mark_as_read/:id', to: 'messages#mark_as_read', as: 'mark_as_read'
 
+  get 'empire', to: 'empire#index'
+
   match '*path', to: redirect('/404.html'), via: :all
 end

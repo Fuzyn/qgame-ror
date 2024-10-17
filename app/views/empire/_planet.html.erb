@@ -1,0 +1,10 @@
+<div class="content-item d-inline-block">
+  <h3 class="text-center">Buildings</h3>
+  <%= render partial: "building", collection: Buildings.planet_values(planet), as: :building %>
+  <h3 class="text-center">Technology</h3>
+  <%= render partial: "technology", collection: Technology.user_values(current_user), as: :technology %>
+  <h3 class="text-center">Fleet</h3>
+  <%= render partial: "fleet", collection: Fleet.planet_values(planet), as: :fleet %>
+  <h3 class="text-center">Defence</h3>
+  <%= render partial: "defence", collection: Defence.planet_values(planet), as: :defence %>
+</div>
