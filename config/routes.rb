@@ -36,5 +36,7 @@ Rails.application.routes.draw do
 
   get 'empire', to: 'empire#index'
 
+  get 'resources', to: 'resources#index'
+
   match '*path', to: redirect('/404.html'), via: :all
 end

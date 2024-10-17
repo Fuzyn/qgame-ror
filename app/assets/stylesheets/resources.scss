@@ -1,0 +1,23 @@
+.resource-content {
+  background-color: rgba(0,0,0,0.7);
+  color: white;
+
+  .resource-table {
+    display: grid;
+    grid-column-gap: 3px;
+    width: -webkit-fill-available;
+    grid-template-columns: 20% 10% 15% 17% 23% 15%;
+
+    .resource-table-data-column {
+      text-align: center;
+    }
+  }
+
+  .text-red {
+    color: red;
+  }
+
+  .green-red {
+    color: green;
+  }
+}

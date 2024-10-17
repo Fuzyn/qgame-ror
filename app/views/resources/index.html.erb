@@ -1,0 +1,16 @@
+<div class="resource-content">
+  <div class="resource-table">
+    <span class="resource-table-data-column">Name</span>
+    <span class="resource-table-data-column">Basic production</span>
+    <span class="resource-table-data-column">Minute production</span>
+    <span class="resource-table-data-column">Hourly production</span>
+    <span class="resource-table-data-column">Daily production</span>
+    <span class="resource-table-data-column">Energy</span>
+  </div>
+  <%= render "resource_row", name: MetalMine.basic_name, value: @metal_production, energy: @metal_energy %>
+  <%= render "resource_row", name: CrystalMine.basic_name, value: @crystal_production, energy: @crystal_energy %>
+  <%= render "resource_row", name: DeuteriumRefinery.basic_name, value: @deuterium_production, energy: @deuterium_energy %>
+  <%= render "resource_row", name: PowerStation.basic_name, value: "", energy: @station_production %>
+  <hr/>
+  <%= render "resource_row", name: "Energy balance", value: "", energy: @energy_balance %>
+</div>
