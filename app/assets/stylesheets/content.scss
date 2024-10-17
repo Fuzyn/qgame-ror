@@ -79,11 +79,23 @@
     width: -webkit-fill-available;
   }
 
+  .d-flex {
+    display: flex;
+  }
+
   .d-inline-block {
     display: inline-block;
   }
 
   .padding-8 {
     padding: 8px;
+  }
+
+  .padding-left-5 {
+    padding-left: 5px;
+  }
+
+  .no-wrap {
+    white-space: nowrap;
   }
 }
