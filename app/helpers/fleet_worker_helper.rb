@@ -5,6 +5,7 @@ module FleetWorkerHelper
   include ApplicationHelper
   include NotificationHelper
   include MessagesHelper
+  include PlanetsHelper
 
   def execute_sent_fleet(record)
     if record.direction == 'to'
@@ -66,13 +67,12 @@ module FleetWorkerHelper
 
   def colonize(record)
     create_new_fleet_message(record)
-    record.user.planets.create!(
+    create_specific_planet(
+      record.user,
       {
-        name: Faker::Lorem.word&.capitalize,
         galaxy: record.galaxy,
         solar_system: record.solar_system,
         planet_position: record.planet_position,
-        photo_number: rand(1..1),
         metal_resource: record.metal_resource,
         crystal_resource: record.crystal_resource,
         deuterium_resource: record.deuterium_resource
