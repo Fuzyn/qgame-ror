@@ -1,4 +1,6 @@
 class BuildingsController < ApplicationController
+  include NotificationHelper
+
   def index
     @planet_buildings = Buildings.planet_values(current_planet)
     @building_queue = current_user.build_queues.building.map(&:queue_values)
@@ -30,10 +32,10 @@ class BuildingsController < ApplicationController
         }
       ).add_assignment
       sleep(0.5)
-      create_log("Building: User #{current_user.email} build #{name}. Current status: #{current_planet.planet_building[key]} - #{name}")
+      create_log(current_user, "Building: User #{current_user.email} build #{name}. Current status: #{current_planet.planet_building[key]} - #{name}")
       redirect_to building_path, notice: "Build #{current_planet.planet_building[key] + level} - #{name}"
     else
-      create_log("Building: Failed build #{name} for user #{current_user.email}")
+      create_log(current_user, "Building: Failed build #{name} for user #{current_user.email}")
       redirect_to building_path, alert: "Error while building #{name}"
     end
   end

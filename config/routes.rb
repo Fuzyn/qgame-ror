@@ -31,5 +31,8 @@ Rails.application.routes.draw do
   post 'add_mission', to: 'fleet#add_mission', as: 'add_mission'
   post 'send_fleet', to: 'fleet#send_fleet', as: 'send_fleet'
 
+  get 'messages', to: 'messages#index'
+  post 'mark_as_read/:id', to: 'messages#mark_as_read', as: 'mark_as_read'
+
   match '*path', to: redirect('/404.html'), via: :all
 end

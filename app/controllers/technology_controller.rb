@@ -1,4 +1,6 @@
 class TechnologyController < ApplicationController
+  include NotificationHelper
+
   def index
     @user_technology = Technology.user_values(current_user)
     @technology_queue = current_user.build_queues.technology.map(&:queue_values)
@@ -29,10 +31,10 @@ class TechnologyController < ApplicationController
         }
       ).add_assignment
       sleep(0.5)
-      create_log("Technology: User #{current_user.email} build #{name}. Current status: #{current_user.user_technology[key]} - #{name}")
+      create_log(current_user, "Technology: User #{current_user.email} build #{name}. Current status: #{current_user.user_technology[key]} - #{name}")
       redirect_to technology_path, notice: "Build #{current_user.user_technology[key] + level} - #{name}"
     else
-      create_log("Technology: Failed build #{name} for user #{current_user.email}")
+      create_log(current_user, "Technology: Failed build #{name} for user #{current_user.email}")
       redirect_to technology_path, alert: "Error while building #{name}"
     end
   end

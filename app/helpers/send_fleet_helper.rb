@@ -3,21 +3,21 @@ module SendFleetHelper
 
   def select_options(is_planet_exist, is_enemy_planet, is_expedition)
     result = []
-    transport = { value: 'transport', label: 'Transport' }
+    transport = { value: UserMessage::TRANSPORT_KEY, label: UserMessage::TRANSPORT_TITLE }
 
     if is_planet_exist
       if is_enemy_planet
-        result << { value: 'attack', label: 'Attack' }
-        result << { value: 'spy', label: 'Spy' }
+        result << { value: UserMessage::ATTACK_KEY, label: UserMessage::ATTACK_TITLE }
+        result << { value: UserMessage::SPY_KEY, label: UserMessage::SPY_TITLE }
         result << transport
       else
         result << transport
       end
     else
       if is_expedition
-        result << { value: 'expedition', label: 'Expedition' }
+        result << { value: UserMessage::EXPEDITION_KEY, label: UserMessage::EXPEDITION_TITLE }
       else
-        result << { value: 'colonize', label: 'Colonize' }
+        result << { value: UserMessage::COLONIZE_KEY, label: UserMessage::COLONIZE_TITLE }
       end
     end
 

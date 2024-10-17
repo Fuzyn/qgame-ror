@@ -1,0 +1,8 @@
+<div data-controller="accordion">
+  <%= render 'message_accordion', title: UserMessage::INITIAL_TITLE, messages: @user.user_messages.initial_type, unread_messages: @user.user_messages.initial_type.unread %>
+  <%= render 'message_accordion', title: UserMessage::TRANSPORT_TITLE, messages: @user.user_messages.transport_type, unread_messages: @user.user_messages.transport_type.unread %>
+  <%= render 'message_accordion', title: UserMessage::ATTACK_TITLE, messages: @user.user_messages.attack_type, unread_messages: @user.user_messages.attack_type.unread %>
+  <%= render 'message_accordion', title: UserMessage::SPY_TITLE, messages: @user.user_messages.spy_type, unread_messages: @user.user_messages.spy_type.unread %>
+  <%= render 'message_accordion', title: UserMessage::EXPEDITION_TITLE, messages: @user.user_messages.expedition_type, unread_messages: @user.user_messages.expedition_type.unread %>
+  <%= render 'message_accordion', title: UserMessage::COLONIZE_TITLE, messages: @user.user_messages.colonize_type, unread_messages: @user.user_messages.colonize_type.unread %>
+</div>

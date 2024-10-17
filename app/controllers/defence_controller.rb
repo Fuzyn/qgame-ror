@@ -1,4 +1,6 @@
 class DefenceController < ApplicationController
+  include NotificationHelper
+
   def index
     @planet_defence = Defence.planet_values(current_planet)
     @defence_queue = current_user.build_queues.defence.map(&:queue_values)
@@ -29,10 +31,10 @@ class DefenceController < ApplicationController
         }
       ).add_assignment
       sleep(0.5)
-      create_log("Defence: User #{current_user.email} build #{quantity} #{name}. Current status: #{current_planet.planet_defence[key]} - #{name}")
+      create_log(current_user, "Defence: User #{current_user.email} build #{quantity} #{name}. Current status: #{current_planet.planet_defence[key]} - #{name}")
       redirect_to defence_path, notice: "Build: #{quantity} #{name}"
     else
-      create_log("Defence: Failed build #{quantity} #{name} for user #{current_user.email}")
+      create_log(current_user, "Defence: Failed build #{quantity} #{name} for user #{current_user.email}")
       redirect_to defence_path, alert: "Error while building #{name}"
     end
   end

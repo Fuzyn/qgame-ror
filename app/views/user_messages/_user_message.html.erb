@@ -1,0 +1,7 @@
+<% if user_message.present? %>
+  <div id="<%= dom_id(user_message) %>">
+    <% if total_messages > 0 %>
+      <span class="notification-count"><%= total_messages %></span>
+    <% end %>
+  </div>
+<% end %>

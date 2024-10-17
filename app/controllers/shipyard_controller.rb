@@ -1,4 +1,6 @@
 class ShipyardController < ApplicationController
+  include NotificationHelper
+
   def index
     @planet_fleet = Fleet.planet_values(current_planet)
     @fleet_queue = current_user.build_queues.fleet.map(&:queue_values)
@@ -28,11 +30,11 @@ class ShipyardController < ApplicationController
           quantity: quantity
         }
       ).add_assignment
-      create_log("Fleet: User #{current_user.email} build #{quantity} #{name}. Current status: #{current_planet.planet_fleet[key]} - #{name}")
+      create_log(current_user, "Fleet: User #{current_user.email} build #{quantity} #{name}. Current status: #{current_planet.planet_fleet[key]} - #{name}")
       sleep(0.5)
       redirect_to shipyard_path, notice: "Build: #{quantity} #{name}"
     else
-      create_log("Fleet: Failed build #{quantity} #{name} for user #{current_user.email}")
+      create_log(current_user, "Fleet: Failed build #{quantity} #{name} for user #{current_user.email}")
       redirect_to shipyard_path, alert: "Error while building #{name}"
     end
   end

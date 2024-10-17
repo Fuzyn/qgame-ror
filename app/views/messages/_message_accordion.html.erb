@@ -1,0 +1,26 @@
+<div class="accordion-category" data-accordion-target="category">
+  <h3 class="accordion-header <%= unread_messages.count > 0 ? "unread" : "" %>" data-action="click->accordion#toggleCategory" data-category-title="<%= title %>">
+    <%= title %> (Total: <%= messages.count %>, Unread: <span class="unread-count" data-accordion-target="unreadCount"><%= unread_messages.count %></span>)
+  </h3>
+  <div class="accordion-content hidden" data-accordion-target="content">
+    <% if messages.any? %>
+      <ul>
+        <% messages.each do |message| %>
+          <li class="message-wrapper" data-controller="message" data-message-id="<%= message.id %>" data-category-title="<%= title %>">
+            <strong class="message-header <%= message.read_date.nil? ? "unread" : "" %>" data-action="click->message#toggleMessage" data-message-mark-read-url="<%= mark_as_read_path(message) if message.read_date.nil? %>">
+              <%= message.title %> - <%= message.created_at.strftime("%Y-%m-%d %H:%M") %>
+              <% if message.read_date.nil? %>
+                <span>(Unread)</span>
+              <% end %>
+            </strong>
+            <div class="message-content" data-message-target="content">
+              <p><%= message.message %></p>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+    <% else %>
+      <p class="no-message">No messages available.</p>
+    <% end %>
+  </div>
+</div>

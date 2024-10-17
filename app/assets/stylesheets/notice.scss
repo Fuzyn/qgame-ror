@@ -33,3 +33,35 @@
     margin: 0;
   }
 }
+
+.notification-container {
+  position: relative;
+  display: inline-block;
+
+  .notification-link {
+    position: relative;
+    text-decoration: none;
+    color: black;
+
+    .material-icons {
+      color: white;
+      font-size: 24px;
+    }
+
+    .notification-count {
+      position: absolute;
+      top: 0;
+      right: -5px;
+      background-color: red;
+      color: white;
+      border-radius: 50%;
+      width: 17px;
+      height: 17px;
+      font-size: 10px;
+      font-weight: bold;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_10_14_162001) do
+ActiveRecord::Schema[7.0].define(version: 2024_10_16_134500) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -108,6 +108,17 @@ ActiveRecord::Schema[7.0].define(version: 2024_10_14_162001) do
     t.index ["user_id"], name: "index_send_fleet_queues_on_user_id"
   end
 
+  create_table "user_messages", force: :cascade do |t|
+    t.bigint "user_id"
+    t.text "title"
+    t.text "message"
+    t.text "message_type"
+    t.datetime "read_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_user_messages_on_user_id"
+  end
+
   create_table "user_technologies", force: :cascade do |t|
     t.bigint "user_id"
     t.integer "combat_technology", default: 0
@@ -145,5 +156,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_10_14_162001) do
   add_foreign_key "planets", "users"
   add_foreign_key "send_fleet_queues", "planets"
   add_foreign_key "send_fleet_queues", "users"
+  add_foreign_key "user_messages", "users"
   add_foreign_key "user_technologies", "users"
 end

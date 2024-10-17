@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   include UsersHelper
+  include NotificationHelper
 
   has_secure_password
 
@@ -12,6 +13,7 @@ class User < ApplicationRecord
   has_many :planets, dependent: :destroy
   has_many :build_queues, dependent: :destroy
   has_many :send_fleet_queues, dependent: :destroy
+  has_many :user_messages, dependent: :destroy
   has_one :user_technology, dependent: :destroy
 
   after_create :create_defaults
@@ -46,6 +48,7 @@ class User < ApplicationRecord
         planet_position: planet_position,
         photo_number: photo_number
       })
+    create_message(self, "Welcome aboard", "Welcome to the new QGame", UserMessage::INITIAL_KEY)
     create_user_technology!
   end
 end

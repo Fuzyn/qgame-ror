@@ -14,6 +14,7 @@
   <body>
     <%= turbo_stream_from "planet_#{current_planet.id}" %>
     <%= turbo_stream_from "sent_fleet_#{current_user.id}" %>
+    <%= turbo_stream_from "unread_messages_#{current_user.id}" %>
 
     <%= render "layouts/navbar" %>
 

@@ -5,6 +5,15 @@
 
   <%= render "planets/planet", planet: current_planet %>
 
+  <div class="notification-container">
+    <%= link_to messages_path, class: 'notification-link' do %>
+      <span class="material-icons">email</span>
+      <div id="user_messages">
+        <%= render partial: 'user_messages/user_message', locals: { user_message: current_user.user_messages.unread.last, total_messages: current_user.user_messages.unread.size } %>
+      </div>
+    <% end %>
+  </div>
+
   <%= button_to logout_path, method: :delete, class: "logout-button" do %>
     <span class="material-icons">logout</span>
   <% end %>
