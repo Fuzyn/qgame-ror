@@ -4,6 +4,11 @@ class ApplicationController < ActionController::Base
   helper_method :current_user, :current_planet, :user_secret
   before_action :require_login
 
+  def change_planet
+    session[:planet_id] = params[:id]
+    render json: {}
+  end
+
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end

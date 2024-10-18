@@ -35,6 +35,15 @@
       }
     }
   }
+
+  .planet-select {
+    display: flex;
+    align-items: center;
+
+    img {
+      margin-right: 5px;
+    }
+  }
 }
 
 @media (max-width: 700px) {

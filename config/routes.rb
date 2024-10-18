@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   post 'login', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'
 
+  get 'change_planet/:id', to: 'application#change_planet'
+
   get 'shipyard', to: 'shipyard#index'
   post 'shipyard/build', to: 'shipyard#build', as: 'shipyard_build'
 

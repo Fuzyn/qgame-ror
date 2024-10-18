@@ -3,6 +3,15 @@
     <span class="toggle-sidebar" onclick="toggleSidebar()"><span class="material-icons">menu</span></span>
   </span>
 
+  <div class="planet-select">
+    <%= image_tag("planet/planet_#{current_planet.photo_number}", alt: "planet_#{current_planet.photo_number}", width: "30px", height: "30px")  %>
+    <select id="planet-select" name="planet_id" data-controller="planet" data-action="change->planet#fetchAndRefresh">
+      <% current_user.planets.each do |i| %>
+        <option value="<%= i.id %>" <%= "selected" if i.id == current_planet.id %>><%= i.name %></option>
+      <% end %>
+    </select>
+  </div>
+
   <%= render "planets/planet", planet: current_planet %>
 
   <div class="notification-container">
