@@ -38,5 +38,8 @@ Rails.application.routes.draw do
 
   get 'resources', to: 'resources#index'
 
+  get 'trader', to: 'trader#index'
+  post 'exchange', to: 'trader#exchange', as: 'exchange'
+
   match '*path', to: redirect('/404.html'), via: :all
 end
