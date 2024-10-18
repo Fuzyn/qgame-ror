@@ -1,11 +1,26 @@
 <div id="send_fleet_queues">
   <%= render partial: 'send_fleet_queues/send_fleet_queue', collection: current_user.send_fleet_queues.active, locals: { path: "" } %>
 </div>
-<h1>Welcome, <%= @user.email %>!</h1>
-<h1>Welcome, <%= @planet.name %>!</h1>
-<p>You have successfully logged in.</p>
-<p>fleet_points <%=@fleet_points %></p>
-<p>defence_points <%=@defence_points %></p>
-<p>buildings_points <%=@buildings_points %></p>
-<p>planet_points <%=@planet_points %></p>
-<p>user_points <%=@user_points %></p>
+<div class="preview-content">
+  <div class="image-wrapper">
+    <%= image_tag("planet/full_planet_#{@planet.photo_number}", alt: "planet") %>
+  </div>
+  <div class="data-wrapper">
+    <h1>Planet: <%= @planet.name %>!</h1>
+    <h3 class="text-center">Planet points:</h3>
+    <hr/>
+    <%= render "points", title: "Planet", points: @planet_points %>
+    <%= render "points", title: "Buildings", points: @buildings_points %>
+    <%= render "points", title: "Defence", points: @defence_points %>
+    <%= render "points", title: "Fleet", points: @fleet_points %>
+
+    <h3 class="text-center">User points:</h3>
+    <hr/>
+    <%= render "points", title: "User", points: @user_points %>
+    <%= render "points", title: "Technology", points: @technology_points %>
+    <%= render "points", title: "Fleet", points: @user_fleet_points %>
+    <%= render "points", title: "Defence", points: @user_defence_points %>
+    <%= render "points", title: "Buildings", points: @user_buildings_points %>
+  </div>
+</div>
+

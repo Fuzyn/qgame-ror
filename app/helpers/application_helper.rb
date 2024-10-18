@@ -1,6 +1,8 @@
 require 'digest'
 
 module ApplicationHelper
+  include FormatterHelper
+
   def subclasses(source)
     eager_load_classes(source)
     ObjectSpace.each_object(Class).select { |klass| klass < self }.sort_by { |klass| klass.order }

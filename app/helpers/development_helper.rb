@@ -11,8 +11,8 @@ module DevelopmentHelper
     calculated_degree(source, 'degree_drop')
   end
 
-  def planet_development_sum_points(planet)
-    self.subclasses(default_source).map { |e| e.basic_points * e.calculated_degree_growth(planet) }.sum.to_i
+  def development_sum_points(source)
+    self.subclasses(default_source).map { |e| e.basic_points * e.calculated_degree_growth(source) }.sum.to_i
   end
 
   private

@@ -1,8 +1,8 @@
 <div class="resource-table">
   <span><%= name %></span>
-  <span class="resource-table-data-column"><%= value.present? ? value.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1.').reverse : "" %></span>
-  <span class="resource-table-data-column"><%= value.present? ? (value * 20).to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1.').reverse : "" %></span>
-  <span class="resource-table-data-column"><%= value.present? ? (value * 1200).to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1.').reverse : "" %></span>
-  <span class="resource-table-data-column"><%= value.present? ? (value * 28800).to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1.').reverse : "" %></span>
+  <span class="resource-table-data-column"><%= value.present? ? number_formatter(value) : "" %></span>
+  <span class="resource-table-data-column"><%= value.present? ? number_formatter(value * 20) : "" %></span>
+  <span class="resource-table-data-column"><%= value.present? ? number_formatter(value * 1200) : "" %></span>
+  <span class="resource-table-data-column"><%= value.present? ? number_formatter(value * 28800) : "" %></span>
   <span class="resource-table-data-column <%= energy > 0 ? "green-red" : "text-red" %>"><%= energy %></span>
 </div>
