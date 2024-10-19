@@ -43,5 +43,8 @@ Rails.application.routes.draw do
   get 'trader', to: 'trader#index'
   post 'exchange', to: 'trader#exchange', as: 'exchange'
 
+  post 'planet_name', to: 'planets#planet_name', as: 'planet_name'
+  post 'change_name', to: 'planets#change_name', as: 'change_name'
+
   match '*path', to: redirect('/404.html'), via: :all
 end

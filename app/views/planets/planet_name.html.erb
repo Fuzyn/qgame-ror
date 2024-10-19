@@ -1,0 +1,12 @@
+<turbo-frame id="planet_change_<%= current_planet.id %>">
+  <%= form_with url: change_name_path, method: :post, local: true do |form| %>
+    <h2>
+      <label for="galaxy">Planet name:</label>
+      <input type="text" name="planet_name" id="planet_name" value="<%= @planet_name %>" required>
+    </h2>
+
+    <div class="submit-button">
+      <%= submit_tag 'Save' %>
+    </div>
+  <% end %>
+</turbo-frame>

@@ -20,6 +20,20 @@
     width: 50%;
     padding: 10px;
 
+    .edit-icon {
+      cursor: pointer;
+      padding: 5px;
+      background: none;
+      color: #99b0ff;
+      border: none;
+
+      &:hover {
+        color: #007bff;
+        background-color: rgba(0, 123, 255, 0.2);
+        border-radius: 50%;
+      }
+    }
+
     .text-center {
       text-align: center;
     }

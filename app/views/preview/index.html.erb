@@ -6,7 +6,14 @@
     <%= image_tag("planet/full_planet_#{@planet.photo_number}", alt: "planet") %>
   </div>
   <div class="data-wrapper">
-    <h1>Planet: <%= @planet.name %>!</h1>
+    <%= turbo_frame_tag "planet_change_#{current_planet.id}" do %>
+      <%= form_with url: planet_name_path, method: :post, local: true do |form| %>
+        <h1>
+          Planet: <%= @planet.name %>!
+          <%= form.submit '', class: 'material-icons edit-icon', value: 'edit' %>
+        </h1>
+      <% end %>
+    <% end %>
     <h3 class="text-center">Planet points:</h3>
     <hr/>
     <%= render "points", title: "Planet", points: @planet_points %>
