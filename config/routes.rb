@@ -46,5 +46,12 @@ Rails.application.routes.draw do
   post 'planet_name', to: 'planets#planet_name', as: 'planet_name'
   post 'change_name', to: 'planets#change_name', as: 'change_name'
 
+  get 'alliance', to: 'alliance#index'
+  get 'new', to: 'alliance#new', as: 'new_alliance'
+  post 'create', to: 'alliance#create', as: 'create_alliance'
+  get 'search', to: 'alliance#search', as: 'search_alliance'
+  post 'join/:id', to: 'alliance#join', as: 'join_alliance'
+  post 'leave', to: 'alliance#leave', as: 'leave_alliance'
+
   match '*path', to: redirect('/404.html'), via: :all
 end

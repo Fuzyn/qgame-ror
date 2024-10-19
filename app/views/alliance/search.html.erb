@@ -1,0 +1,31 @@
+<div class="search-alliance">
+  <h1>Search Alliance</h1>
+
+  <%= form_with url: search_alliance_path, method: :get, local: true do %>
+    <div class="form-group">
+      <%= label_tag :query, "Alliance Name" %>
+      <%= text_field_tag :query, params[:query], class: "form-control" %>
+    </div>
+    <div class="submit-button">
+      <%= submit_tag "Search" %>
+    </div>
+  <% end %>
+
+  <h2>Results:</h2>
+
+  <% if @alliances.any? %>
+    <ul>
+      <% @alliances.each_with_index do |alliance, index| %>
+        <li>
+          <%= index + 1 %>.
+          <%= alliance.name %>
+          <div class="submit-button">
+            <%= button_to 'Join', join_alliance_path(alliance), method: :post %>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p>No alliances found</p>
+  <% end %>
+</div>

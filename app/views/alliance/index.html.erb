@@ -1,0 +1,35 @@
+<% if flash[:notice] %>
+  <div class="success-messages">
+    <p><%= flash[:notice] %></p>
+  </div>
+<% elsif flash[:alert] %>
+  <div class="error-messages">
+    <p><%= flash[:alert] %></p>
+  </div>
+<% end %>
+
+<% if current_user.alliance_id.present? %>
+  <div class="current-alliance">
+    <h1>Alliance: <%= @alliance.name %></h1>
+    <h2>Members:</h2>
+    <ul>
+      <% @alliance_users.each do |user| %>
+        <li><%= user.email %></li>
+      <% end %>
+    </ul>
+    <div class="cancel-button">
+      <%= button_to leave_alliance_path, method: :post, local: true do %>
+        <span>Leave the alliance</span>
+      <% end %>
+    </div>
+  </div>
+<% else %>
+  <div class="tile-container">
+    <div class="tile">
+      <%= link_to 'Search Alliance', search_alliance_path, class: 'tile-link' %>
+    </div>
+    <div class="tile">
+      <%= link_to 'Create Alliance', new_alliance_path, class: 'tile-link' %>
+    </div>
+  </div>
+<% end %>
