@@ -52,7 +52,7 @@ RSpec.describe "User management", type: :system do
       fill_in "Password", with: valid_password
       click_button "Log In"
 
-      expect(page).to have_content(valid_email)
+      expect(page).to have_content('Planet:')
       expect(current_path).to eq(preview_path)
     end
 

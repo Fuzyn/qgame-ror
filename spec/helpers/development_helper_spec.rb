@@ -74,5 +74,37 @@ RSpec.describe DevelopmentHelper, type: :helper do
       expect(DeuteriumRefinery.development_sum_points(planet)).to eq(0)
       expect(PowerStation.development_sum_points(planet)).to eq(0)
     end
+
+    it 'technology_sum_points' do
+      expect(Technology.technology_sum_points(user)).to eq(0)
+      expect(CombatTechnology.technology_sum_points(user)).to eq(0)
+      expect(ImpulseDrive.technology_sum_points(user)).to eq(0)
+      expect(RocketTechnology.technology_sum_points(user)).to eq(0)
+      expect(LaserTechnology.technology_sum_points(user)).to eq(0)
+
+      user.user_technology.increment!('combat_technology', 1)
+
+      expect(Technology.technology_sum_points(user)).to eq(402)
+      expect(CombatTechnology.technology_sum_points(user)).to eq(0)
+      expect(ImpulseDrive.technology_sum_points(user)).to eq(0)
+      expect(RocketTechnology.technology_sum_points(user)).to eq(0)
+      expect(LaserTechnology.technology_sum_points(user)).to eq(0)
+
+      user.user_technology.increment!('combat_technology', 1)
+
+      expect(Technology.technology_sum_points(user)).to eq(425)
+      expect(CombatTechnology.technology_sum_points(user)).to eq(0)
+      expect(ImpulseDrive.technology_sum_points(user)).to eq(0)
+      expect(RocketTechnology.technology_sum_points(user)).to eq(0)
+      expect(LaserTechnology.technology_sum_points(user)).to eq(0)
+
+      user.user_technology.increment!('laser_technology', 1)
+
+      expect(Technology.technology_sum_points(user)).to eq(862)
+      expect(CombatTechnology.technology_sum_points(user)).to eq(0)
+      expect(ImpulseDrive.technology_sum_points(user)).to eq(0)
+      expect(RocketTechnology.technology_sum_points(user)).to eq(0)
+      expect(LaserTechnology.technology_sum_points(user)).to eq(0)
+    end
   end
 end
