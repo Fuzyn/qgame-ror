@@ -37,10 +37,10 @@ RSpec.describe PlanetsHelper, type: :helper do
   end
 
   describe 'randomize_photo_number' do
-    it 'returns a random photo number between 1 and 11' do
+    it 'returns a random photo number between 1 and 14' do
       photo_number = helper.randomize_photo_number(user)
 
-      expect(photo_number).to be_between(1, 11).inclusive
+      expect(photo_number).to be_between(1, 14).inclusive
     end
 
     it 'does not return a photo number that already exists for the user' do
@@ -59,7 +59,7 @@ RSpec.describe PlanetsHelper, type: :helper do
       expect(new_planet.galaxy).to be_between(1, 9).inclusive
       expect(new_planet.solar_system).to be_between(1, 255).inclusive
       expect(new_planet.planet_position).to be_between(1, 15).inclusive
-      expect(new_planet.photo_number).to be_between(1, 11).inclusive
+      expect(new_planet.photo_number).to be_between(1, 14).inclusive
     end
 
     it 'does not create a planet at the same galaxy, solar system, and position as an existing planet' do
@@ -82,7 +82,7 @@ RSpec.describe PlanetsHelper, type: :helper do
       expect(specific_planet.galaxy).to eq(2)
       expect(specific_planet.solar_system).to eq(50)
       expect(specific_planet.planet_position).to eq(10)
-      expect(specific_planet.photo_number).to be_between(1, 11).inclusive
+      expect(specific_planet.photo_number).to be_between(1, 14).inclusive
     end
 
     it 'assigns a random photo number that does not already exist for the user' do

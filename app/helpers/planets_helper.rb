@@ -18,7 +18,7 @@ module PlanetsHelper
     photo_number = 1
 
     loop do
-      photo_number = rand(1..11)
+      photo_number = rand(1..14)
       break unless user.planets.where(photo_number: photo_number).present?
     end
 
