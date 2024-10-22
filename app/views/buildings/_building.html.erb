@@ -18,7 +18,14 @@
       </div>
     </div>
     <p><%= building[:description] %></p>
-    <%= render 'bonus_building_value', title: "Production", value: building[:production] %>
-    <%= render 'bonus_building_value', title: "Energy", value: building[:energy_consumption] %>
+    <% if building[:production] %>
+      <%= render 'bonus_building_value', title: "Production", value: building[:production] %>
+    <% end %>
+    <% if building[:energy_consumption] %>
+      <%= render 'bonus_building_value', title: "Energy", value: building[:energy_consumption] %>
+    <% end %>
+    <% if building[:degree_growth] && building[:degree_growth] > 0 %>
+      <%= render 'bonus_building_growth_value', title: "Increasing value", value: building[:degree_growth] %>
+    <% end %>
   </div>
 </div>

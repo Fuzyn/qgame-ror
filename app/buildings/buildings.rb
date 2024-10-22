@@ -17,6 +17,7 @@ class Buildings
         points: e.basic_points,
         production: e.production(planet),
         energy_consumption: e.energy(planet),
+        degree_growth: e.calculated_degree_growth(planet),
         key: e.basic_key,
         name: e.basic_name,
         description: e.basic_description,

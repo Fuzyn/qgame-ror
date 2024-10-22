@@ -1,0 +1,4 @@
+<div class="bonus_value building">
+  <span class="title"><%= title %>:</span>
+  <span class="<%= value && value > 0 ? 'text-green' : value && value < 0 ? 'text-red' : '' %>"><%= (value * 100).to_i - 100 %>%</span>
+</div>
